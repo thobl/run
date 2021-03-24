@@ -180,7 +180,7 @@ not already exist.  For more details on when exactly a run is skipped,
 see <a href="#policy-of-skipping-runs">Policy of Skipping Runs</a>.</p>
 
 <p><strong>Note:</strong> Specifying <code>creates_file</code> is only necessary if the command
-itself creates the file.  If instead the command's outputs to <code>stdout</code>
+itself creates the file.  If instead the command's output to <code>stdout</code>
 is written to a file (see <a href="#postprocessing-the-output">next section</a>),
 <code><a href="run.html">run</a></code> already knows which file is created.</p>
 
@@ -199,7 +199,7 @@ by the following example.</p>
 </code></pre></div>
 
 <p>The <code>echo</code> command itself adds the two given values and writes them
-to starboard output.  The run module takes this result and writes it
+to standard output.  The run module takes this result and writes it
 to the provided file instead.  Thus, executing this example creates
 six files with different values for a and b, each of which contains
 the sum of a and b as content.</p>
@@ -741,7 +741,7 @@ should be stored does not exist, it is created.</p>
 <span class="sd">see [Policy of Skipping Runs](#policy-of-skipping-runs).</span>
 
 <span class="sd">**Note:** Specifying ``creates_file`` is only necessary if the command</span>
-<span class="sd">itself creates the file.  If instead the command&#39;s outputs to ``stdout``</span>
+<span class="sd">itself creates the file.  If instead the command&#39;s output to ``stdout``</span>
 <span class="sd">is written to a file (see [next section](#postprocessing-the-output)),</span>
 <span class="sd">``run`` already knows which file is created.</span>
 
@@ -761,7 +761,7 @@ should be stored does not exist, it is created.</p>
 <span class="sd">```</span>
 
 <span class="sd">The ``echo`` command itself adds the two given values and writes them</span>
-<span class="sd">to starboard output.  The run module takes this result and writes it</span>
+<span class="sd">to standard output.  The run module takes this result and writes it</span>
 <span class="sd">to the provided file instead.  Thus, executing this example creates</span>
 <span class="sd">six files with different values for a and b, each of which contains</span>
 <span class="sd">the sum of a and b as content.</span>
