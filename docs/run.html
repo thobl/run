@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="pdoc 6.3.2" />
+    <title>run</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20width%3D%2256.243pt%22%20height%3D%2254.884pt%22%20viewBox%3D%220%200%2056.243%2054.884%22%20version%3D%221.1%22%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip1%22%3E%0A%20%20%3Cpath%20d%3D%22M%200%200%20L%2056.242188%200%20L%2056.242188%2054.882812%20L%200%2054.882812%20Z%20M%200%200%20%22/%3E%0A%3C/clipPath%3E%0A%3C/defs%3E%0A%3Cg%20id%3D%22surface1%22%3E%0A%3Cg%20clip-path%3D%22url%28%23clip1%29%22%20clip-rule%3D%22nonzero%22%3E%0A%3Cpath%20style%3D%22fill-rule%3Aevenodd%3Bfill%3Argb%280%25%2C0%25%2C0%25%29%3Bfill-opacity%3A1%3Bstroke-width%3A0.4%3Bstroke-linecap%3Abutt%3Bstroke-linejoin%3Around%3Bstroke%3Argb%280%25%2C0%25%2C0%25%29%3Bstroke-opacity%3A1%3Bstroke-miterlimit%3A10%3B%22%20d%3D%22M%20261.863719%20697.864063%20C%20266.090281%20696.575%20270.559031%20698.957813%20271.848094%20703.184375%20C%20273.137156%20707.410938%20270.754344%20711.879688%20266.527781%20713.16875%20C%20262.301219%20714.457813%20257.832469%20712.075%20256.543406%20707.848438%20C%20255.254344%20703.621875%20257.637156%20699.153125%20261.863719%20697.864063%20M%20280.973094%20698.996875%20L%20288.398875%20691.297656%20L%20283.219187%20684.754688%20L%20274.38325%20690.676563%20L%20269.559031%20688.332813%20L%20268.371531%20677.54375%20L%20260.023875%20677.516406%20L%20258.949656%20688.297656%20L%20254.105906%20690.610156%20L%20245.129344%20684.629688%20L%20239.902781%20691.1375%20L%20247.461375%20698.883594%20L%20246.250438%20704.110156%20L%20236.176219%20707.219531%20L%20238.00825%20715.360156%20L%20248.578563%20714.465625%20L%20251.910594%20718.672656%20L%20248.25825%20728.301563%20L%20255.762156%20731.946094%20L%20261.453562%20723.305469%20L%20266.82075%20723.325%20L%20272.269969%20732.000781%20L%20279.801219%20728.403125%20L%20276.394969%20718.750781%20L%20279.754344%20714.567188%20L%20290.137156%20715.532031%20L%20292.019969%20707.403125%20L%20282.148875%20704.23125%20Z%20M%20280.973094%20698.996875%20%22%20transform%3D%22matrix%281%2C0%2C0%2C-1%2C-235.977%2C732.2%29%22/%3E%0A%3C/g%3E%0A%3C/g%3E%0A%3C/svg%3E"/>
+
+
+<style type="text/css">/*! * Bootstrap Reboot v5.0.0-beta1 (https://getbootstrap.com/) * Copyright 2011-2020 The Bootstrap Authors * Copyright 2011-2020 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}[tabindex="-1"]:focus:not(:focus-visible){outline:0!important}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus{outline:dotted 1px;outline:-webkit-focus-ring-color auto 5px}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
+<style type="text/css">/*! pygments syntax highlighting */pre{line-height:125%;}td.linenos pre{color:#000000; background-color:#f0f0f0; padding-left:5px; padding-right:5px;}span.linenos{color:#000000; background-color:#f0f0f0; padding-left:5px; padding-right:5px;}td.linenos pre.special{color:#000000; background-color:#ffffc0; padding-left:5px; padding-right:5px;}span.linenos.special{color:#000000; background-color:#ffffc0; padding-left:5px; padding-right:5px;}.pdoc .hll{background-color:#ffffcc}.pdoc{background:#f8f8f8;}.pdoc .c{color:#408080; font-style:italic}.pdoc .err{border:1px solid #FF0000}.pdoc .k{color:#008000; font-weight:bold}.pdoc .o{color:#666666}.pdoc .ch{color:#408080; font-style:italic}.pdoc .cm{color:#408080; font-style:italic}.pdoc .cp{color:#BC7A00}.pdoc .cpf{color:#408080; font-style:italic}.pdoc .c1{color:#408080; font-style:italic}.pdoc .cs{color:#408080; font-style:italic}.pdoc .gd{color:#A00000}.pdoc .ge{font-style:italic}.pdoc .gr{color:#FF0000}.pdoc .gh{color:#000080; font-weight:bold}.pdoc .gi{color:#00A000}.pdoc .go{color:#888888}.pdoc .gp{color:#000080; font-weight:bold}.pdoc .gs{font-weight:bold}.pdoc .gu{color:#800080; font-weight:bold}.pdoc .gt{color:#0044DD}.pdoc .kc{color:#008000; font-weight:bold}.pdoc .kd{color:#008000; font-weight:bold}.pdoc .kn{color:#008000; font-weight:bold}.pdoc .kp{color:#008000}.pdoc .kr{color:#008000; font-weight:bold}.pdoc .kt{color:#B00040}.pdoc .m{color:#666666}.pdoc .s{color:#BA2121}.pdoc .na{color:#7D9029}.pdoc .nb{color:#008000}.pdoc .nc{color:#0000FF; font-weight:bold}.pdoc .no{color:#880000}.pdoc .nd{color:#AA22FF}.pdoc .ni{color:#999999; font-weight:bold}.pdoc .ne{color:#D2413A; font-weight:bold}.pdoc .nf{color:#0000FF}.pdoc .nl{color:#A0A000}.pdoc .nn{color:#0000FF; font-weight:bold}.pdoc .nt{color:#008000; font-weight:bold}.pdoc .nv{color:#19177C}.pdoc .ow{color:#AA22FF; font-weight:bold}.pdoc .w{color:#bbbbbb}.pdoc .mb{color:#666666}.pdoc .mf{color:#666666}.pdoc .mh{color:#666666}.pdoc .mi{color:#666666}.pdoc .mo{color:#666666}.pdoc .sa{color:#BA2121}.pdoc .sb{color:#BA2121}.pdoc .sc{color:#BA2121}.pdoc .dl{color:#BA2121}.pdoc .sd{color:#BA2121; font-style:italic}.pdoc .s2{color:#BA2121}.pdoc .se{color:#BB6622; font-weight:bold}.pdoc .sh{color:#BA2121}.pdoc .si{color:#BB6688; font-weight:bold}.pdoc .sx{color:#008000}.pdoc .sr{color:#BB6688}.pdoc .s1{color:#BA2121}.pdoc .ss{color:#19177C}.pdoc .bp{color:#008000}.pdoc .fm{color:#0000FF}.pdoc .vc{color:#19177C}.pdoc .vg{color:#19177C}.pdoc .vi{color:#19177C}.pdoc .vm{color:#19177C}.pdoc .il{color:#666666}</style>
+<style type="text/css">/*! pdoc */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f7f7f7;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}body{background-color:var(--pdoc-background);}html, body{width:100%;height:100%;}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main{padding:2rem 3vw;}.git-button{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}#navtoggle{display:none;}}#togglestate{display:none;}nav.pdoc{--pad:1.75rem;--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent }nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc li{display:block;margin:0;padding:.2rem 0 .2rem var(--indent);transition:all 100ms;}nav.pdoc > div > ul > li{padding-left:0;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}  html, main{scroll-behavior:smooth;}.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3, .pdoc h4{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{background-color:var(--code);border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--code);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.pdoc details{--shift:-40px;text-align:right;margin-top:var(--shift);margin-bottom:calc(0px - var(--shift));clear:both;filter:opacity(1);}.pdoc details:not([open]){height:0;overflow:visible;}.pdoc details > summary{font-size:.75rem;cursor:pointer;color:var(--muted);border-width:0;padding:0 .7em;display:inline-block;display:inline list-item;user-select:none;}.pdoc details > summary:focus{outline:0;}.pdoc details > div{margin-top:calc(0px - var(--shift) / 2);text-align:left;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc > section:first-of-type > .docstring{margin-bottom:3rem;}.pdoc .docstring pre{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc .headerlink{position:absolute;width:0;margin-left:-1.5rem;line-height:1.4rem;font-size:1.5rem;font-weight:normal;transition:all 100ms ease-in-out;opacity:0;}.pdoc .attr > .headerlink{margin-left:-2.5rem;}.pdoc *:hover > .headerlink,.pdoc *:target > .attr > .headerlink{opacity:1;}.pdoc .attr{color:var(--text);margin:1rem 0 .5rem;padding:.4rem 5rem .4rem 1rem;background-color:var(--accent);}.pdoc .classattr{margin-left:2rem;}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{white-space:pre-wrap;}.pdoc .annotation{color:var(--annotation);}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}  .pdoc .attribution{  transform:scale(0.75); }}</style>
+</head>
+<body>  <nav class="pdoc">
+    <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
+    <input id="togglestate" type="checkbox">
+    <div style="height: 80%">
+
+
+	<a class="pdoc-button module-list-button" href="./index.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>          &nbsp;
+          Readme
+        </a>
+	<h3>Interface</h3>
+            <ul class="memberlist">
+            <li>
+                    <a class="function" href="#add">add</a>
+            </li>
+            <li>
+                    <a class="function" href="#run">run</a>
+            </li>
+            <li>
+                    <a class="variable" href="#cores">cores</a>
+            </li>
+            <li>
+                    <a class="function" href="#group">group</a>
+            </li>
+            <li>
+                    <a class="function" href="#deblob">deblob</a>
+            </li>
+    </ul>
+
+
+	<a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev">
+          built with <span class="visually-hidden">pdoc</span><img
+          alt="pdoc logo"
+          src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20role%3D%22img%22%20aria-label%3D%22pdoc%20logo%22%20width%3D%22300%22%20height%3D%22150%22%20viewBox%3D%22-1%200%2060%2030%22%3E%3Ctitle%3Epdoc%3C/title%3E%3Cpath%20d%3D%22M29.621%2021.293c-.011-.273-.214-.475-.511-.481a.5.5%200%200%200-.489.503l-.044%201.393c-.097.551-.695%201.215-1.566%201.704-.577.428-1.306.486-2.193.182-1.426-.617-2.467-1.654-3.304-2.487l-.173-.172a3.43%203.43%200%200%200-.365-.306.49.49%200%200%200-.286-.196c-1.718-1.06-4.931-1.47-7.353.191l-.219.15c-1.707%201.187-3.413%202.131-4.328%201.03-.02-.027-.49-.685-.141-1.763.233-.721.546-2.408.772-4.076.042-.09.067-.187.046-.288.166-1.347.277-2.625.241-3.351%201.378-1.008%202.271-2.586%202.271-4.362%200-.976-.272-1.935-.788-2.774-.057-.094-.122-.18-.184-.268.033-.167.052-.339.052-.516%200-1.477-1.202-2.679-2.679-2.679-.791%200-1.496.352-1.987.9a6.3%206.3%200%200%200-1.001.029c-.492-.564-1.207-.929-2.012-.929-1.477%200-2.679%201.202-2.679%202.679A2.65%202.65%200%200%200%20.97%206.554c-.383.747-.595%201.572-.595%202.41%200%202.311%201.507%204.29%203.635%205.107-.037.699-.147%202.27-.423%203.294l-.137.461c-.622%202.042-2.515%208.257%201.727%2010.643%201.614.908%203.06%201.248%204.317%201.248%202.665%200%204.492-1.524%205.322-2.401%201.476-1.559%202.886-1.854%206.491.82%201.877%201.393%203.514%201.753%204.861%201.068%202.223-1.713%202.811-3.867%203.399-6.374.077-.846.056-1.469.054-1.537zm-4.835%204.313c-.054.305-.156.586-.242.629-.034-.007-.131-.022-.307-.157-.145-.111-.314-.478-.456-.908.221.121.432.25.675.355.115.039.219.051.33.081zm-2.251-1.238c-.05.33-.158.648-.252.694-.022.001-.125-.018-.307-.157-.217-.166-.488-.906-.639-1.573.358.344.754.693%201.198%201.036zm-3.887-2.337c-.006-.116-.018-.231-.041-.342.635.145%201.189.368%201.599.625.097.231.166.481.174.642-.03.049-.055.101-.067.158-.046.013-.128.026-.298.004-.278-.037-.901-.57-1.367-1.087zm-1.127-.497c.116.306.176.625.12.71-.019.014-.117.045-.345.016-.206-.027-.604-.332-.986-.695.41-.051.816-.056%201.211-.031zm-4.535%201.535c.209.22.379.47.358.598-.006.041-.088.138-.351.234-.144.055-.539-.063-.979-.259a11.66%2011.66%200%200%200%20.972-.573zm.983-.664c.359-.237.738-.418%201.126-.554.25.237.479.548.457.694-.006.042-.087.138-.351.235-.174.064-.694-.105-1.232-.375zm-3.381%201.794c-.022.145-.061.29-.149.401-.133.166-.358.248-.69.251h-.002c-.133%200-.306-.26-.45-.621.417.091.854.07%201.291-.031zm-2.066-8.077a4.78%204.78%200%200%201-.775-.584c.172-.115.505-.254.88-.378l-.105.962zm-.331%202.302a10.32%2010.32%200%200%201-.828-.502c.202-.143.576-.328.984-.49l-.156.992zm-.45%202.157l-.701-.403c.214-.115.536-.249.891-.376a11.57%2011.57%200%200%201-.19.779zm-.181%201.716c.064.398.194.702.298.893-.194-.051-.435-.162-.736-.398.061-.119.224-.3.438-.495zM8.87%204.141c0%20.152-.123.276-.276.276s-.275-.124-.275-.276.123-.276.276-.276.275.124.275.276zm-.735-.389a1.15%201.15%200%200%200-.314.783%201.16%201.16%200%200%200%201.162%201.162c.457%200%20.842-.27%201.032-.653.026.117.042.238.042.362a1.68%201.68%200%200%201-1.679%201.679%201.68%201.68%200%200%201-1.679-1.679c0-.843.626-1.535%201.436-1.654zM5.059%205.406A1.68%201.68%200%200%201%203.38%207.085a1.68%201.68%200%200%201-1.679-1.679c0-.037.009-.072.011-.109.21.3.541.508.935.508a1.16%201.16%200%200%200%201.162-1.162%201.14%201.14%200%200%200-.474-.912c.015%200%20.03-.005.045-.005.926.001%201.679.754%201.679%201.68zM3.198%204.141c0%20.152-.123.276-.276.276s-.275-.124-.275-.276.123-.276.276-.276.275.124.275.276zM1.375%208.964c0-.52.103-1.035.288-1.52.466.394%201.06.64%201.717.64%201.144%200%202.116-.725%202.499-1.738.383%201.012%201.355%201.738%202.499%201.738.867%200%201.631-.421%202.121-1.062.307.605.478%201.267.478%201.942%200%202.486-2.153%204.51-4.801%204.51s-4.801-2.023-4.801-4.51zm24.342%2019.349c-.985.498-2.267.168-3.813-.979-3.073-2.281-5.453-3.199-7.813-.705-1.315%201.391-4.163%203.365-8.423.97-3.174-1.786-2.239-6.266-1.261-9.479l.146-.492c.276-1.02.395-2.457.444-3.268a6.11%206.11%200%200%200%201.18.115%206.01%206.01%200%200%200%202.536-.562l-.006.175c-.802.215-1.848.612-2.021%201.25-.079.295.021.601.274.837.219.203.415.364.598.501-.667.304-1.243.698-1.311%201.179-.02.144-.022.507.393.787.213.144.395.26.564.365-1.285.521-1.361.96-1.381%201.126-.018.142-.011.496.427.746l.854.489c-.473.389-.971.914-.999%201.429-.018.278.095.532.316.713.675.556%201.231.721%201.653.721.059%200%20.104-.014.158-.02.207.707.641%201.64%201.513%201.64h.013c.8-.008%201.236-.345%201.462-.626.173-.216.268-.457.325-.692.424.195.93.374%201.372.374.151%200%20.294-.021.423-.068.732-.27.944-.704.993-1.021.009-.061.003-.119.002-.179.266.086.538.147.789.147.15%200%20.294-.021.423-.069.542-.2.797-.489.914-.754.237.147.478.258.704.288.106.014.205.021.296.021.356%200%20.595-.101.767-.229.438.435%201.094.992%201.656%201.067.106.014.205.021.296.021a1.56%201.56%200%200%200%20.323-.035c.17.575.453%201.289.866%201.605.358.273.665.362.914.362a.99.99%200%200%200%20.421-.093%201.03%201.03%200%200%200%20.245-.164c.168.428.39.846.68%201.068.358.273.665.362.913.362a.99.99%200%200%200%20.421-.093c.317-.148.512-.448.639-.762.251.157.495.257.726.257.127%200%20.25-.024.37-.071.427-.17.706-.617.841-1.314.022-.015.047-.022.068-.038.067-.051.133-.104.196-.159-.443%201.486-1.107%202.761-2.086%203.257zM8.66%209.925a.5.5%200%201%200-1%200c0%20.653-.818%201.205-1.787%201.205s-1.787-.552-1.787-1.205a.5.5%200%201%200-1%200c0%201.216%201.25%202.205%202.787%202.205s2.787-.989%202.787-2.205zm4.4%2015.965l-.208.097c-2.661%201.258-4.708%201.436-6.086.527-1.542-1.017-1.88-3.19-1.844-4.198a.4.4%200%200%200-.385-.414c-.242-.029-.406.164-.414.385-.046%201.249.367%203.686%202.202%204.896.708.467%201.547.7%202.51.7%201.248%200%202.706-.392%204.362-1.174l.185-.086a.4.4%200%200%200%20.205-.527c-.089-.204-.326-.291-.527-.206zM9.547%202.292c.093.077.205.114.317.114a.5.5%200%200%200%20.318-.886L8.817.397a.5.5%200%200%200-.703.068.5.5%200%200%200%20.069.703l1.364%201.124zm-7.661-.065c.086%200%20.173-.022.253-.068l1.523-.893a.5.5%200%200%200-.506-.863l-1.523.892a.5.5%200%200%200-.179.685c.094.158.261.247.432.247z%22%20transform%3D%22matrix%28-1%200%200%201%2058%200%29%22%20fill%3D%22%233bb300%22/%3E%3Cpath%20d%3D%22M.3%2021.86V10.18q0-.46.02-.68.04-.22.18-.5.28-.54%201.34-.54%201.06%200%201.42.28.38.26.44.78.76-1.04%202.38-1.04%201.64%200%203.1%201.54%201.46%201.54%201.46%203.58%200%202.04-1.46%203.58-1.44%201.54-3.08%201.54-1.64%200-2.38-.92v4.04q0%20.46-.04.68-.02.22-.18.5-.14.3-.5.42-.36.12-.98.12-.62%200-1-.12-.36-.12-.52-.4-.14-.28-.18-.5-.02-.22-.02-.68zm3.96-9.42q-.46.54-.46%201.18%200%20.64.46%201.18.48.52%201.2.52.74%200%201.24-.52.52-.52.52-1.18%200-.66-.48-1.18-.48-.54-1.26-.54-.76%200-1.22.54zm14.741-8.36q.16-.3.54-.42.38-.12%201-.12.64%200%201.02.12.38.12.52.42.16.3.18.54.04.22.04.68v11.94q0%20.46-.04.7-.02.22-.18.5-.3.54-1.7.54-1.38%200-1.54-.98-.84.96-2.34.96-1.8%200-3.28-1.56-1.48-1.58-1.48-3.66%200-2.1%201.48-3.68%201.5-1.58%203.28-1.58%201.48%200%202.3%201v-4.2q0-.46.02-.68.04-.24.18-.52zm-3.24%2010.86q.52.54%201.26.54.74%200%201.22-.54.5-.54.5-1.18%200-.66-.48-1.22-.46-.56-1.26-.56-.8%200-1.28.56-.48.54-.48%201.2%200%20.66.52%201.2zm7.833-1.2q0-2.4%201.68-3.96%201.68-1.56%203.84-1.56%202.16%200%203.82%201.56%201.66%201.54%201.66%203.94%200%201.66-.86%202.96-.86%201.28-2.1%201.9-1.22.6-2.54.6-1.32%200-2.56-.64-1.24-.66-2.1-1.92-.84-1.28-.84-2.88zm4.18%201.44q.64.48%201.3.48.66%200%201.32-.5.66-.5.66-1.48%200-.98-.62-1.46-.62-.48-1.34-.48-.72%200-1.34.5-.62.5-.62%201.48%200%20.96.64%201.46zm11.412-1.44q0%20.84.56%201.32.56.46%201.18.46.64%200%201.18-.36.56-.38.9-.38.6%200%201.46%201.06.46.58.46%201.04%200%20.76-1.1%201.42-1.14.8-2.8.8-1.86%200-3.58-1.34-.82-.64-1.34-1.7-.52-1.08-.52-2.36%200-1.3.52-2.34.52-1.06%201.34-1.7%201.66-1.32%203.54-1.32.76%200%201.48.22.72.2%201.06.4l.32.2q.36.24.56.38.52.4.52.92%200%20.5-.42%201.14-.72%201.1-1.38%201.1-.38%200-1.08-.44-.36-.34-1.04-.34-.66%200-1.24.48-.58.48-.58%201.34z%22%20fill%3D%22green%22/%3E%3C/svg%3E"/>
+	</a>
+    </div>
+  </nav>
+    <main class="pdoc">
+            <section>
+                    <h1 class="modulename">
+      run
+    </h1>
+
+                        <div class="docstring"><p>A module for running experiments that involve the execution of
+commands with different combinations of command line arguments.</p>
+
+<p>This is a somewhat short reference documentation of the interface.
+There is also a <a href="./index.html">longer explanation including various
+examples</a>.</p>
+</div>
+
+                        <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="sd">&#39;&#39;&#39;A module for running experiments that involve the execution of</span>
+<span class="sd">commands with different combinations of command line arguments.</span>
+
+<span class="sd">This is a somewhat short reference documentation of the interface.</span>
+<span class="sd">There is also a [longer explanation including various</span>
+<span class="sd">examples](./index.html).</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
+<span class="kn">from</span> <span class="nn">filelock</span> <span class="kn">import</span> <span class="n">SoftFileLock</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="kn">from</span> <span class="nn">pathos.multiprocessing</span> <span class="kn">import</span> <span class="n">ProcessingPool</span>
+
+
+<span class="k">def</span> <span class="nf">_identity</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Identity function just returning the input.</span>
+
+<span class="sd">    Default for the modifier functions of ``add()``</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">inp</span>
+
+
+<span class="n">_Run</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;_Run&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;command&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;args&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;creates_file&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stdout_file&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stdout_mod&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stdout_res&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;header_string&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;header_command&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;header_mod&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;allowed_return_codes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;is_selected&#39;</span><span class="p">])</span>
+<span class="sd">&#39;&#39;&#39;Datatype representing a single run.&#39;&#39;&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">command</span><span class="p">,</span>
+        <span class="n">arguments_descr</span><span class="p">,</span>
+        <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+        <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+        <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Add a new experiment.</span>
+
+<span class="sd">    Based on the experiment description, a set of inidvidual runs is</span>
+<span class="sd">    generated, where each individual run basically corresponds to a</span>
+<span class="sd">    set of command line arguments.  The arguments are represented by a</span>
+<span class="sd">    dictionary, i.e., each argument has a key and a value.</span>
+
+<span class="sd">    To describe how the arguments of an individual run can be used in</span>
+<span class="sd">    several places, we need the concept of a *blob*.  Ultimately, a</span>
+<span class="sd">    blob is something that will be evaluated to a string by replacing</span>
+<span class="sd">    wildcards of the form ``[[key]]`` with the value of the</span>
+<span class="sd">    corresponding argument.  A blob can also be a function, in which</span>
+<span class="sd">    case it is evaluated (with the arguments as parameter) before</span>
+<span class="sd">    doing this kind of replacements.  For more details on how a blob</span>
+<span class="sd">    turns into a string, see the function ``deblob()``.  Note that a</span>
+<span class="sd">    blob is only defined in the context of an individual run.  Thus,</span>
+<span class="sd">    whenever we talk about blob, we implicitly have an individual run</span>
+<span class="sd">    with a specific set of arguments in mind.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    name: blob</span>
+
+<span class="sd">      Name of the experiment.  An experiment is only run if its name</span>
+<span class="sd">      (or the name of its ``group``) appears as command line parameter.</span>
+<span class="sd">      It does not need to be unique among experiments.</span>
+
+<span class="sd">    command: blob</span>
+
+<span class="sd">      The command that will be called for each run.</span>
+
+<span class="sd">    arguments_descr: dictionary</span>
+
+<span class="sd">      Dictionary of arguments or lists of arguments.  In case of</span>
+<span class="sd">      lists, one run for each combination of arguments is generated.</span>
+<span class="sd">      Each individual argument is a blob, where the blobs are</span>
+<span class="sd">      evaluated to strings in order of appearance in the dictionary.</span>
+
+<span class="sd">    creates_file: blob, optional</span>
+
+<span class="sd">      Describes the name of a file that is created by calling the</span>
+<span class="sd">      command.  This is only used to skip the run if the file already</span>
+<span class="sd">      exists (at the time when this method is called, not at the time</span>
+<span class="sd">      when the command is actually run).</span>
+
+<span class="sd">    stdout_file: blob, optional</span>
+
+<span class="sd">      The filename to which the standard output of the run should be</span>
+<span class="sd">      written.  There are three different cases, depending on whether</span>
+<span class="sd">      this file already exists:</span>
+
+<span class="sd">      1. If the file exists when calling this function (i.e., before</span>
+<span class="sd">         performing any runs), the run is skipped.</span>
+
+<span class="sd">      1. If the run is not skipped but the file exists when executing</span>
+<span class="sd">         the run, the standard output is added at the end of the file.</span>
+
+<span class="sd">      1. If the file does not exist, it is created beginning with the</span>
+<span class="sd">         header (if specified) and then the standard output is added.</span>
+
+<span class="sd">    stdout_mod: function, default =``identity``</span>
+
+<span class="sd">      A function applied to the standard output of the run, before</span>
+<span class="sd">      writing it to the file.  If the function takes one argument, it</span>
+<span class="sd">      gets the standard output as string as input.  Otherwise, it</span>
+<span class="sd">      should take two arguments, the standard output as string and the</span>
+<span class="sd">      result of a call to ``subprocess.run()``.  The latter gives</span>
+<span class="sd">      access to additional information such as the return code.</span>
+
+<span class="sd">    stdout_res: blob, optional</span>
+
+<span class="sd">      If given, this blob is written to the file instead of the</span>
+<span class="sd">      standard output itself.  This blob is somewhat special in the</span>
+<span class="sd">      sense that it evaluated after the run has finished with the</span>
+<span class="sd">      special argument ``stdout``, i.e., the blob can contain the</span>
+<span class="sd">      special wildcard ``[[stdout]]``, which will be replaced by the</span>
+<span class="sd">      standard output (after it was modified by ``stdout_mod``).</span>
+
+<span class="sd">    header_string: blob, optional</span>
+
+<span class="sd">      A string specifying the header; see input parameter</span>
+<span class="sd">      ``stdout_file``.</span>
+
+<span class="sd">    header_command: blob, optional</span>
+
+<span class="sd">      A command that is run to use its standard output as header.</span>
+
+<span class="sd">    header_mod: function, default =``identity``</span>
+
+<span class="sd">      A function that is applied to the header (specified by</span>
+<span class="sd">      ``header_string`` or ``header_command``) before writing it to a</span>
+<span class="sd">      file.  It should take one argument (a string) and return a</span>
+<span class="sd">      string.</span>
+
+<span class="sd">    allowed_return_codes: list[int], default =``[0]``</span>
+
+<span class="sd">      A list of allowed return codes.  If a command returns any other</span>
+<span class="sd">      code, a warning is printed and the run is aborted.  The empty</span>
+<span class="sd">      list ``[]`` indicates that any return code should be accepted.</span>
+
+<span class="sd">    combinations_filter: function, default = always ``True``</span>
+
+<span class="sd">      A function that filters the combinations of arguments.  It</span>
+<span class="sd">      should take a dictionary of arguments and decide whether it</span>
+<span class="sd">      represents a valid combination by returning ``True`` of</span>
+<span class="sd">      ``False``.  The default returns always ``True``, i.e., a run is</span>
+<span class="sd">      created for every combination.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string and header_command specified&quot;</span>
+                       <span class="s2">&quot; - Which one should I use?&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> \
+       <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
+                       <span class="s2">&quot;header_string or header_command are specified&quot;</span><span class="p">)</span>
+
+    <span class="c1"># generate the set of arguments</span>
+    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+                       <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span> <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span>
+                     <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+
+    <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">arguments_set</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">combinations_filter</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+        <span class="n">real_name</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">real_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]:</span>
+            <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real_name</span><span class="p">)</span>
+
+        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
+                   <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+                   <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
+                   <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
+                   <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
+                   <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
+                   <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">))</span>
+        <span class="n">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Add a single run to the list of runs.</span>
+
+<span class="sd">    Checks whether the run should was selected or whether it should be</span>
+<span class="sd">    skippped and adjusts the corresponding data structures</span>
+<span class="sd">    accordingly.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">:</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">_is_skipped</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">is_selected</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_skipped</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_is_selected</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Decides whether a given name was selected.</span>
+
+<span class="sd">    A name counts as selected if it is give as command line parameter</span>
+<span class="sd">    or if it belongs to a group that was given as command line</span>
+<span class="sd">    parameter.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">_is_skipped</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Decides whether a given run should be skipped.</span>
+
+<span class="sd">    A run is skipped if the output file already exists.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span><span class="p">((</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span><span class="p">))</span>
+           <span class="ow">or</span>
+           <span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Run the previously declared experiments.</span>
+
+<span class="sd">    You should call this exactly once at the end of the file.</span>
+
+<span class="sd">    If ``dry_run`` is given as command line parameter, then the runs are</span>
+<span class="sd">    not executed but the commands printed to ``stdout``.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">_print_runs</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">_is_selected</span><span class="p">(</span><span class="s2">&quot;dry_run&quot;</span><span class="p">):</span>
+        <span class="n">_run_dry</span><span class="p">()</span>
+        <span class="k">return</span>
+
+    <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">running the experiments:&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">runs</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># run in parallel</span>
+        <span class="n">orig_sigint_handler</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
+                               <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
+                               <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)):</span>
+                <span class="k">pass</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="n">cores</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="sd">&#39;&#39;&#39;The number of cores used to run the experiments.&#39;&#39;&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_run_dry</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Perform a dry run.&#39;&#39;&#39;</span>
+    <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">dry run: just printing, no doing&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">runs</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># print the runs</span>
+        <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">commands for experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">group_name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Set the current group.</span>
+
+<span class="sd">    Each experiment created with ``add()`` is added to the group for</span>
+<span class="sd">    which this function was last called.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    group_name: string</span>
+
+<span class="sd">      The name of the group.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group_name</span>
+    <span class="k">if</span> <span class="n">group_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="k">def</span> <span class="nf">deblob</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Transforms a blob into a string.</span>
+
+<span class="sd">    This function is meant for internal use but understanding what it</span>
+<span class="sd">    does might be useful.  A blob is transferred into a string in the</span>
+<span class="sd">    following steps.</span>
+
+<span class="sd">    1. If ``blob`` is a function, it is called with ``args`` as parameter.</span>
+
+<span class="sd">    1. The result (or ``blob`` itself, if 1. did not apply) is converted</span>
+<span class="sd">    to a string (using ``str()``).</span>
+
+<span class="sd">    1. Every pattern of the form ``[[key]]`` is replaced by the value of</span>
+<span class="sd">    the corresponding argument in ``args``.</span>
+
+<span class="sd">    Step 3 assumes that every pattern of the form ``[[key]]`` has a</span>
+<span class="sd">    corresponding argument with this key.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    blob: blob</span>
+
+<span class="sd">      The blob that should be turned into a string.</span>
+
+<span class="sd">    args: dictionary</span>
+
+<span class="sd">      The named arguments of the current run.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">blob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">blob</span><span class="p">):</span>
+        <span class="n">blob</span> <span class="o">=</span> <span class="n">blob</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="n">blob</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[\[([^\[\]]*)\]\]&quot;</span><span class="p">,</span> <span class="n">blob</span><span class="p">)]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">blob</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;No value for [[&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;]] found to replace in &quot;</span> <span class="o">+</span> <span class="n">blob</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[[&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;]]&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">_run_run</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Actually run a run.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">_execute</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+
+    <span class="c1"># check return codes</span>
+    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="ow">and</span>\
+       <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;unexpected return code for command: &quot;</span> <span class="o">+</span>
+                       <span class="n">res</span><span class="o">.</span><span class="n">args</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.lock&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># create new file with header</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span>
+                                         <span class="n">run</span><span class="o">.</span><span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">header_string</span>
+        <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="n">_execute</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">header_command</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">header_mod</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">SoftFileLock</span><span class="p">(</span><span class="n">lock</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># write to stdout</span>
+    <span class="n">stdout</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">mod</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_mod</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> \
+        <span class="k">else</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">SoftFileLock</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="o">+</span> <span class="s2">&quot;.lock&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Execute a command line command and return the result.</span>
+
+<span class="sd">    This is a wrapper for ``subprocess.run()``.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_print_warning</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Print a warning message.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">_color_warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">WARNING: &quot;</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">)),</span>
+          <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_print_section</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Print section heading.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m&quot;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_print_runs</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Print summary of all specified run.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">format_str</span> <span class="o">=</span> <span class="s2">&quot;{:&lt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="si">{:&gt;10}{:&gt;10}{:&gt;10}</span><span class="s2">&quot;</span>
+    <span class="n">_print_section</span><span class="p">(</span><span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;todo&quot;</span><span class="p">,</span> <span class="s2">&quot;skipped&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">_color_selected</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">_is_selected</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot; └─ &quot;</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot; ├─ &quot;</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">_color_selected</span><span class="p">(</span>
+                <span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span>
+                                  <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">_is_selected</span><span class="p">(</span><span class="n">name</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">_color_warning</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return the string but with ansi colors representing a warning.&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[33m&quot;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[0m&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_color_selected</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">selected</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return the string but with ansi colors for (un)selected experiments.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[32;1m&quot;</span> <span class="k">if</span> <span class="n">selected</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[91;2m&quot;</span>
+    <span class="k">return</span> <span class="n">col</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[0m&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_max_name_len</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Gives the length of the longest used name.</span>
+
+<span class="sd">    Includes group and experiment names.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">])</span>
+
+
+<span class="k">class</span> <span class="nc">_State</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;Internal state.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runs_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counts_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;ungrouped&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
+            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was never called&quot;</span><span class="p">)</span>
+
+
+<span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Instance of the internal state.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+
+        </details>
+
+            </section>
+                <section id="add">
+                            <div class="attr function"><a class="headerlink" href="#add">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">add</span><span class="signature">(
+    name,
+    command,
+    arguments_descr,
+    creates_file=None,
+    stdout_file=None,
+    stdout_mod=&lt;function _identity&gt;,
+    stdout_res=None,
+    header_string=None,
+    header_command=None,
+    header_mod=&lt;function _identity&gt;,
+    allowed_return_codes=[0],
+    combinations_filter=&lt;function &lt;lambda&gt;&gt;
+)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">command</span><span class="p">,</span>
+        <span class="n">arguments_descr</span><span class="p">,</span>
+        <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+        <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+        <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Add a new experiment.</span>
+
+<span class="sd">    Based on the experiment description, a set of inidvidual runs is</span>
+<span class="sd">    generated, where each individual run basically corresponds to a</span>
+<span class="sd">    set of command line arguments.  The arguments are represented by a</span>
+<span class="sd">    dictionary, i.e., each argument has a key and a value.</span>
+
+<span class="sd">    To describe how the arguments of an individual run can be used in</span>
+<span class="sd">    several places, we need the concept of a *blob*.  Ultimately, a</span>
+<span class="sd">    blob is something that will be evaluated to a string by replacing</span>
+<span class="sd">    wildcards of the form ``[[key]]`` with the value of the</span>
+<span class="sd">    corresponding argument.  A blob can also be a function, in which</span>
+<span class="sd">    case it is evaluated (with the arguments as parameter) before</span>
+<span class="sd">    doing this kind of replacements.  For more details on how a blob</span>
+<span class="sd">    turns into a string, see the function ``deblob()``.  Note that a</span>
+<span class="sd">    blob is only defined in the context of an individual run.  Thus,</span>
+<span class="sd">    whenever we talk about blob, we implicitly have an individual run</span>
+<span class="sd">    with a specific set of arguments in mind.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    name: blob</span>
+
+<span class="sd">      Name of the experiment.  An experiment is only run if its name</span>
+<span class="sd">      (or the name of its ``group``) appears as command line parameter.</span>
+<span class="sd">      It does not need to be unique among experiments.</span>
+
+<span class="sd">    command: blob</span>
+
+<span class="sd">      The command that will be called for each run.</span>
+
+<span class="sd">    arguments_descr: dictionary</span>
+
+<span class="sd">      Dictionary of arguments or lists of arguments.  In case of</span>
+<span class="sd">      lists, one run for each combination of arguments is generated.</span>
+<span class="sd">      Each individual argument is a blob, where the blobs are</span>
+<span class="sd">      evaluated to strings in order of appearance in the dictionary.</span>
+
+<span class="sd">    creates_file: blob, optional</span>
+
+<span class="sd">      Describes the name of a file that is created by calling the</span>
+<span class="sd">      command.  This is only used to skip the run if the file already</span>
+<span class="sd">      exists (at the time when this method is called, not at the time</span>
+<span class="sd">      when the command is actually run).</span>
+
+<span class="sd">    stdout_file: blob, optional</span>
+
+<span class="sd">      The filename to which the standard output of the run should be</span>
+<span class="sd">      written.  There are three different cases, depending on whether</span>
+<span class="sd">      this file already exists:</span>
+
+<span class="sd">      1. If the file exists when calling this function (i.e., before</span>
+<span class="sd">         performing any runs), the run is skipped.</span>
+
+<span class="sd">      1. If the run is not skipped but the file exists when executing</span>
+<span class="sd">         the run, the standard output is added at the end of the file.</span>
+
+<span class="sd">      1. If the file does not exist, it is created beginning with the</span>
+<span class="sd">         header (if specified) and then the standard output is added.</span>
+
+<span class="sd">    stdout_mod: function, default =``identity``</span>
+
+<span class="sd">      A function applied to the standard output of the run, before</span>
+<span class="sd">      writing it to the file.  If the function takes one argument, it</span>
+<span class="sd">      gets the standard output as string as input.  Otherwise, it</span>
+<span class="sd">      should take two arguments, the standard output as string and the</span>
+<span class="sd">      result of a call to ``subprocess.run()``.  The latter gives</span>
+<span class="sd">      access to additional information such as the return code.</span>
+
+<span class="sd">    stdout_res: blob, optional</span>
+
+<span class="sd">      If given, this blob is written to the file instead of the</span>
+<span class="sd">      standard output itself.  This blob is somewhat special in the</span>
+<span class="sd">      sense that it evaluated after the run has finished with the</span>
+<span class="sd">      special argument ``stdout``, i.e., the blob can contain the</span>
+<span class="sd">      special wildcard ``[[stdout]]``, which will be replaced by the</span>
+<span class="sd">      standard output (after it was modified by ``stdout_mod``).</span>
+
+<span class="sd">    header_string: blob, optional</span>
+
+<span class="sd">      A string specifying the header; see input parameter</span>
+<span class="sd">      ``stdout_file``.</span>
+
+<span class="sd">    header_command: blob, optional</span>
+
+<span class="sd">      A command that is run to use its standard output as header.</span>
+
+<span class="sd">    header_mod: function, default =``identity``</span>
+
+<span class="sd">      A function that is applied to the header (specified by</span>
+<span class="sd">      ``header_string`` or ``header_command``) before writing it to a</span>
+<span class="sd">      file.  It should take one argument (a string) and return a</span>
+<span class="sd">      string.</span>
+
+<span class="sd">    allowed_return_codes: list[int], default =``[0]``</span>
+
+<span class="sd">      A list of allowed return codes.  If a command returns any other</span>
+<span class="sd">      code, a warning is printed and the run is aborted.  The empty</span>
+<span class="sd">      list ``[]`` indicates that any return code should be accepted.</span>
+
+<span class="sd">    combinations_filter: function, default = always ``True``</span>
+
+<span class="sd">      A function that filters the combinations of arguments.  It</span>
+<span class="sd">      should take a dictionary of arguments and decide whether it</span>
+<span class="sd">      represents a valid combination by returning ``True`` of</span>
+<span class="sd">      ``False``.  The default returns always ``True``, i.e., a run is</span>
+<span class="sd">      created for every combination.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span>
+                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string and header_command specified&quot;</span>
+                       <span class="s2">&quot; - Which one should I use?&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> \
+       <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
+                       <span class="s2">&quot;header_string or header_command are specified&quot;</span><span class="p">)</span>
+
+    <span class="c1"># generate the set of arguments</span>
+    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+                       <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span> <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span>
+                     <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+
+    <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">arguments_set</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">combinations_filter</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+        <span class="n">real_name</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">real_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]:</span>
+            <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real_name</span><span class="p">)</span>
+
+        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
+                   <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+                   <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
+                   <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
+                   <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+                   <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
+                   <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
+                   <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">))</span>
+        <span class="n">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Add a new experiment.</p>
+
+<p>Based on the experiment description, a set of inidvidual runs is
+generated, where each individual run basically corresponds to a
+set of command line arguments.  The arguments are represented by a
+dictionary, i.e., each argument has a key and a value.</p>
+
+<p>To describe how the arguments of an individual run can be used in
+several places, we need the concept of a <em>blob</em>.  Ultimately, a
+blob is something that will be evaluated to a string by replacing
+wildcards of the form <code>[[key]]</code> with the value of the
+corresponding argument.  A blob can also be a function, in which
+case it is evaluated (with the arguments as parameter) before
+doing this kind of replacements.  For more details on how a blob
+turns into a string, see the function <code><a href="#deblob">deblob()</a></code>.  Note that a
+blob is only defined in the context of an individual run.  Thus,
+whenever we talk about blob, we implicitly have an individual run
+with a specific set of arguments in mind.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>name</strong> (blob):
+Name of the experiment.  An experiment is only run if its name
+(or the name of its <code><a href="#group">group</a></code>) appears as command line parameter.
+It does not need to be unique among experiments.</li>
+<li><strong>command</strong> (blob):
+The command that will be called for each run.</li>
+<li><strong>arguments_descr</strong> (dictionary):
+Dictionary of arguments or lists of arguments.  In case of
+lists, one run for each combination of arguments is generated.
+Each individual argument is a blob, where the blobs are
+evaluated to strings in order of appearance in the dictionary.</li>
+<li><strong>creates_file</strong> (blob, optional):
+Describes the name of a file that is created by calling the
+command.  This is only used to skip the run if the file already
+exists (at the time when this method is called, not at the time
+when the command is actually run).</li>
+<li><p><strong>stdout_file</strong> (blob, optional):
+The filename to which the standard output of the run should be
+written.  There are three different cases, depending on whether
+this file already exists:</p>
+
+<ol>
+<li><p>If the file exists when calling this function (i.e., before
+performing any runs), the run is skipped.</p></li>
+<li><p>If the run is not skipped but the file exists when executing
+the run, the standard output is added at the end of the file.</p></li>
+<li><p>If the file does not exist, it is created beginning with the
+header (if specified) and then the standard output is added.</p></li>
+</ol></li>
+<li><strong>stdout_mod</strong> (function, default =<code>identity</code>):
+A function applied to the standard output of the run, before
+writing it to the file.  If the function takes one argument, it
+gets the standard output as string as input.  Otherwise, it
+should take two arguments, the standard output as string and the
+result of a call to <code>subprocess.run()</code>.  The latter gives
+access to additional information such as the return code.</li>
+<li><strong>stdout_res</strong> (blob, optional):
+If given, this blob is written to the file instead of the
+standard output itself.  This blob is somewhat special in the
+sense that it evaluated after the run has finished with the
+special argument <code>stdout</code>, i.e., the blob can contain the
+special wildcard <code>[[stdout]]</code>, which will be replaced by the
+standard output (after it was modified by <code>stdout_mod</code>).</li>
+<li><strong>header_string</strong> (blob, optional):
+A string specifying the header; see input parameter
+<code>stdout_file</code>.</li>
+<li><strong>header_command</strong> (blob, optional):
+A command that is run to use its standard output as header.</li>
+<li><strong>header_mod</strong> (function, default =<code>identity</code>):
+A function that is applied to the header (specified by
+<code>header_string</code> or <code>header_command</code>) before writing it to a
+file.  It should take one argument (a string) and return a
+string.</li>
+<li><strong>allowed_return_codes</strong> (list[int], default =<code>[0]</code>):
+A list of allowed return codes.  If a command returns any other
+code, a warning is printed and the run is aborted.  The empty
+list <code>[]</code> indicates that any return code should be accepted.</li>
+<li><strong>combinations_filter</strong> (function, default = always <code>True</code>):
+A function that filters the combinations of arguments.  It
+should take a dictionary of arguments and decide whether it
+represents a valid combination by returning <code>True</code> of
+<code>False</code>.  The default returns always <code>True</code>, i.e., a run is
+created for every combination.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="run">
+                            <div class="attr function"><a class="headerlink" href="#run">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">run</span><span class="signature">()</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Run the previously declared experiments.</span>
+
+<span class="sd">    You should call this exactly once at the end of the file.</span>
+
+<span class="sd">    If ``dry_run`` is given as command line parameter, then the runs are</span>
+<span class="sd">    not executed but the commands printed to ``stdout``.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">_print_runs</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">_is_selected</span><span class="p">(</span><span class="s2">&quot;dry_run&quot;</span><span class="p">):</span>
+        <span class="n">_run_dry</span><span class="p">()</span>
+        <span class="k">return</span>
+
+    <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">running the experiments:&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">runs</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># run in parallel</span>
+        <span class="n">orig_sigint_handler</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
+                               <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
+                               <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)):</span>
+                <span class="k">pass</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Run the previously declared experiments.</p>
+
+<p>You should call this exactly once at the end of the file.</p>
+
+<p>If <code>dry_run</code> is given as command line parameter, then the runs are
+not executed but the commands printed to <code>stdout</code>.</p>
+</div>
+
+
+                </section>
+                <section id="cores">
+                                <div class="attr variable"><a class="headerlink" href="#cores">#&nbsp;&nbsp</a>
+
+        <span class="name">cores</span><span class="default_value"> = 4</span>
+    </div>
+
+            <div class="docstring"><p>The number of cores used to run the experiments.</p>
+</div>
+
+
+                </section>
+                <section id="group">
+                            <div class="attr function"><a class="headerlink" href="#group">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">group</span><span class="signature">(group_name)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">group_name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Set the current group.</span>
+
+<span class="sd">    Each experiment created with ``add()`` is added to the group for</span>
+<span class="sd">    which this function was last called.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    group_name: string</span>
+
+<span class="sd">      The name of the group.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group_name</span>
+    <span class="k">if</span> <span class="n">group_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+        <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Set the current group.</p>
+
+<p>Each experiment created with <code><a href="#add">add()</a></code> is added to the group for
+which this function was last called.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>group_name</strong> (string):
+The name of the group.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="deblob">
+                            <div class="attr function"><a class="headerlink" href="#deblob">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">deblob</span><span class="signature">(blob, args)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deblob</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Transforms a blob into a string.</span>
+
+<span class="sd">    This function is meant for internal use but understanding what it</span>
+<span class="sd">    does might be useful.  A blob is transferred into a string in the</span>
+<span class="sd">    following steps.</span>
+
+<span class="sd">    1. If ``blob`` is a function, it is called with ``args`` as parameter.</span>
+
+<span class="sd">    1. The result (or ``blob`` itself, if 1. did not apply) is converted</span>
+<span class="sd">    to a string (using ``str()``).</span>
+
+<span class="sd">    1. Every pattern of the form ``[[key]]`` is replaced by the value of</span>
+<span class="sd">    the corresponding argument in ``args``.</span>
+
+<span class="sd">    Step 3 assumes that every pattern of the form ``[[key]]`` has a</span>
+<span class="sd">    corresponding argument with this key.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    blob: blob</span>
+
+<span class="sd">      The blob that should be turned into a string.</span>
+
+<span class="sd">    args: dictionary</span>
+
+<span class="sd">      The named arguments of the current run.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">blob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">blob</span><span class="p">):</span>
+        <span class="n">blob</span> <span class="o">=</span> <span class="n">blob</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="n">blob</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[\[([^\[\]]*)\]\]&quot;</span><span class="p">,</span> <span class="n">blob</span><span class="p">)]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">blob</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;No value for [[&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;]] found to replace in &quot;</span> <span class="o">+</span> <span class="n">blob</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[[&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;]]&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Transforms a blob into a string.</p>
+
+<p>This function is meant for internal use but understanding what it
+does might be useful.  A blob is transferred into a string in the
+following steps.</p>
+
+<ol>
+<li><p>If <code>blob</code> is a function, it is called with <code>args</code> as parameter.</p></li>
+<li><p>The result (or <code>blob</code> itself, if 1. did not apply) is converted
+to a string (using <code>str()</code>).</p></li>
+<li><p>Every pattern of the form <code>[[key]]</code> is replaced by the value of
+the corresponding argument in <code>args</code>.</p></li>
+</ol>
+
+<p>Step 3 assumes that every pattern of the form <code>[[key]]</code> has a
+corresponding argument with this key.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>blob</strong> (blob):
+The blob that should be turned into a string.</li>
+<li><strong>args</strong> (dictionary):
+The named arguments of the current run.</li>
+</ul>
+</div>
+
+
+                </section>
+    </main>
+</body>
+</html>

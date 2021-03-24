@@ -1,0 +1,49 @@
+{% extends "default/module.html.jinja2" %}
+{% block title %}{{ module.modulename }}{% endblock %}
+{% defaultmacro module_name() %}
+    <h1 class="modulename">
+      run
+    </h1>
+{% enddefaultmacro %}
+
+{% block style_content %}
+  {{ super() }}
+  .pdoc .attribution {
+  transform: scale(0.75);
+  }
+}
+{% endblock %}
+
+
+{% block nav %}
+  <nav class="pdoc">
+    <label id="navtoggle" for="togglestate" class="pdoc-button">{% include 'navtoggle.svg' %}</label>
+    <input id="togglestate" type="checkbox">
+    <div style="height: 80%">
+
+      {% set index = module.docstring | render_docstring | attr("toc_html") %}
+      {% if index %}
+        <h3>Contents</h3>
+        {{ index | safe }}
+      {% endif %}
+
+      {% if module.members %}
+	<a class="pdoc-button module-list-button" href="./index.html">
+          {% include "box-arrow-in-left.svg" %}
+          &nbsp;
+          Readme
+        </a>
+	<h3>Interface</h3>
+        {{ nav_members(module.members.values()) }}
+      {% endif %}
+
+      {% block attribution %}
+	<a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev">
+          built with <span class="visually-hidden">pdoc</span><img
+          alt="pdoc logo"
+          src="data:image/svg+xml,{% filter urlencode %}{% include "logo.svg" %}{% endfilter %}"/>
+	</a>
+      {% endblock %}
+    </div>
+  </nav>
+{% endblock %}
