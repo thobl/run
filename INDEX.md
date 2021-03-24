@@ -123,7 +123,7 @@ not already exist.  For more details on when exactly a run is skipped,
 see [Policy of Skipping Runs](#policy-of-skipping-runs).
 
 **Note:** Specifying ``creates_file`` is only necessary if the command
-itself creates the file.  If instead the command's outputs to ``stdout``
+itself creates the file.  If instead the command's output to ``stdout``
 is written to a file (see [next section](#postprocessing-the-output)),
 ``run`` already knows which file is created.
 
@@ -143,7 +143,7 @@ run.add(
 ```
 
 The ``echo`` command itself adds the two given values and writes them
-to starboard output.  The run module takes this result and writes it
+to standard output.  The run module takes this result and writes it
 to the provided file instead.  Thus, executing this example creates
 six files with different values for a and b, each of which contains
 the sum of a and b as content.
