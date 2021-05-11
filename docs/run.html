@@ -68,14 +68,14 @@ examples</a>.</p>
 
                         <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="sd">&#39;&#39;&#39;A module for running experiments that involve the execution of</span>
+            <div class="codehilite"><pre><span></span><span class="sd">&quot;&quot;&quot;A module for running experiments that involve the execution of</span>
 <span class="sd">commands with different combinations of command line arguments.</span>
 
 <span class="sd">This is a somewhat short reference documentation of the interface.</span>
 <span class="sd">There is also a [longer explanation including various</span>
 <span class="sd">examples](./index.html).</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -91,43 +91,49 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">_identity</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Identity function just returning the input.</span>
+    <span class="sd">&quot;&quot;&quot;Identity function just returning the input.</span>
 
 <span class="sd">    Default for the modifier functions of ``add()``</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">inp</span>
 
 
-<span class="n">_Run</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;_Run&#39;</span><span class="p">,</span> <span class="p">[</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;command&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;args&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;creates_file&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;stdout_file&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;stdout_mod&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;stdout_res&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;header_string&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;header_command&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;header_mod&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;allowed_return_codes&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;is_selected&#39;</span><span class="p">])</span>
-<span class="sd">&#39;&#39;&#39;Datatype representing a single run.&#39;&#39;&#39;</span>
+<span class="n">_Run</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s2">&quot;_Run&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;command&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;args&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;creates_file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;stdout_file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;stdout_mod&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;stdout_res&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;header_string&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;header_command&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;header_mod&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;allowed_return_codes&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_selected&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Datatype representing a single run.&quot;&quot;&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
-        <span class="n">command</span><span class="p">,</span>
-        <span class="n">arguments_descr</span><span class="p">,</span>
-        <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
-        <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
-        <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Add a new experiment.</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">command</span><span class="p">,</span>
+    <span class="n">arguments_descr</span><span class="p">,</span>
+    <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+    <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+    <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add a new experiment.</span>
 
 <span class="sd">    Based on the experiment description, a set of inidvidual runs is</span>
 <span class="sd">    generated, where each individual run basically corresponds to a</span>
@@ -236,35 +242,38 @@ examples</a>.</p>
 <span class="sd">      ``False``.  The default returns always ``True``, i.e., a run is</span>
 <span class="sd">      created for every combination.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string and header_command specified&quot;</span>
-                       <span class="s2">&quot; - Which one should I use?&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> \
-       <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
-                       <span class="s2">&quot;header_string or header_command are specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_string and header_command specified&quot;</span> <span class="s2">&quot; - Which one should I use?&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
+            <span class="s2">&quot;header_string or header_command are specified&quot;</span>
+        <span class="p">)</span>
 
     <span class="c1"># generate the set of arguments</span>
-    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
-                       <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span> <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span>
-                     <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="p">]</span>
 
     <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">arguments_set</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">combinations_filter</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -276,29 +285,31 @@ examples</a>.</p>
         <span class="k">if</span> <span class="n">real_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]:</span>
             <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real_name</span><span class="p">)</span>
 
-        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
-                   <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-                   <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
-                   <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
-                   <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
-                   <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
-                   <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">))</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
+            <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
+            <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
+            <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
+            <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="n">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Add a single run to the list of runs.</span>
+    <span class="sd">&quot;&quot;&quot;Add a single run to the list of runs.</span>
 
 <span class="sd">    Checks whether the run should was selected or whether it should be</span>
 <span class="sd">    skippped and adjusts the corresponding data structures</span>
 <span class="sd">    accordingly.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">:</span>
         <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">run</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -313,13 +324,13 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">_is_selected</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Decides whether a given name was selected.</span>
+    <span class="sd">&quot;&quot;&quot;Decides whether a given name was selected.</span>
 
 <span class="sd">    A name counts as selected if it is give as command line parameter</span>
 <span class="sd">    or if it belongs to a group that was given as command line</span>
 <span class="sd">    parameter.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -329,25 +340,25 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">_is_skipped</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Decides whether a given run should be skipped.</span>
+    <span class="sd">&quot;&quot;&quot;Decides whether a given run should be skipped.</span>
 
 <span class="sd">    A run is skipped if the output file already exists.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">return</span><span class="p">((</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span><span class="p">))</span>
-           <span class="ow">or</span>
-           <span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span><span class="p">)))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">creates_file</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span><span class="p">)</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Run the previously declared experiments.</span>
+    <span class="sd">&quot;&quot;&quot;Run the previously declared experiments.</span>
 
 <span class="sd">    You should call this exactly once at the end of the file.</span>
 
 <span class="sd">    If ``dry_run`` is given as command line parameter, then the runs are</span>
 <span class="sd">    not executed but the commands printed to ``stdout``.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
@@ -368,20 +379,22 @@ examples</a>.</p>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
         <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
-                               <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
-                               <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
+                <span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
+                <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">),</span>
+            <span class="p">):</span>
                 <span class="k">pass</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
 
 
 <span class="n">cores</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="sd">&#39;&#39;&#39;The number of cores used to run the experiments.&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;The number of cores used to run the experiments.&quot;&quot;&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">_run_dry</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Perform a dry run.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Perform a dry run.&quot;&quot;&quot;</span>
     <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">dry run: just printing, no doing&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">runs</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -393,7 +406,7 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">group_name</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Set the current group.</span>
+    <span class="sd">&quot;&quot;&quot;Set the current group.</span>
 
 <span class="sd">    Each experiment created with ``add()`` is added to the group for</span>
 <span class="sd">    which this function was last called.</span>
@@ -405,14 +418,14 @@ examples</a>.</p>
 
 <span class="sd">      The name of the group.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group_name</span>
     <span class="k">if</span> <span class="n">group_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
         <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
 
 <span class="k">def</span> <span class="nf">deblob</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Transforms a blob into a string.</span>
+    <span class="sd">&quot;&quot;&quot;Transforms a blob into a string.</span>
 
 <span class="sd">    This function is meant for internal use but understanding what it</span>
 <span class="sd">    does might be useful.  A blob is transferred into a string in the</span>
@@ -440,7 +453,7 @@ examples</a>.</p>
 
 <span class="sd">      The named arguments of the current run.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">blob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
@@ -460,16 +473,21 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">_run_run</span><span class="p">(</span><span class="n">run</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Actually run a run.</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Actually run a run.&quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">_execute</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
 
     <span class="c1"># check return codes</span>
-    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="ow">and</span>\
-       <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="o">!=</span> <span class="p">[]:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;unexpected return code for command: &quot;</span> <span class="o">+</span>
-                       <span class="n">res</span><span class="o">.</span><span class="n">args</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">returncode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span>
+        <span class="ow">and</span> <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="o">!=</span> <span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;unexpected return code for command: &quot;</span>
+            <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">args</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="o">+</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -480,8 +498,9 @@ examples</a>.</p>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># create new file with header</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span>
-                                         <span class="n">run</span><span class="o">.</span><span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">run</span><span class="o">.</span><span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">):</span>
         <span class="n">header</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">header_string</span>
         <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">_execute</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">header_command</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -495,8 +514,7 @@ examples</a>.</p>
     <span class="c1"># write to stdout</span>
     <span class="n">stdout</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="n">mod</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_mod</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> \
-        <span class="k">else</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
@@ -507,32 +525,26 @@ examples</a>.</p>
 
 
 <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Execute a command line command and return the result.</span>
+    <span class="sd">&quot;&quot;&quot;Execute a command line command and return the result.</span>
 
 <span class="sd">    This is a wrapper for ``subprocess.run()``.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_print_warning</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Print a warning message.</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">_color_warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">WARNING: &quot;</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">)),</span>
-          <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Print a warning message.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">_color_warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">WARNING: &quot;</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">)),</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_print_section</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Print section heading.</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Print section heading.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m&quot;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_print_runs</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Print summary of all specified run.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Print summary of all specified run.&quot;&quot;&quot;</span>
     <span class="n">format_str</span> <span class="o">=</span> <span class="s2">&quot;{:&lt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="si">{:&gt;10}{:&gt;10}{:&gt;10}</span><span class="s2">&quot;</span>
     <span class="n">_print_section</span><span class="p">(</span><span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;todo&quot;</span><span class="p">,</span> <span class="s2">&quot;skipped&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -542,43 +554,43 @@ examples</a>.</p>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot; └─ &quot;</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot; ├─ &quot;</span>
             <span class="n">count</span> <span class="o">=</span> <span class="n">_state</span><span class="o">.</span><span class="n">counts_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">_color_selected</span><span class="p">(</span>
-                <span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span>
-                                  <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                <span class="n">_is_selected</span><span class="p">(</span><span class="n">name</span><span class="p">)))</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="n">_color_selected</span><span class="p">(</span>
+                    <span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">prefix</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">),</span>
+                    <span class="n">_is_selected</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_color_warning</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Return the string but with ansi colors representing a warning.&#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Return the string but with ansi colors representing a warning.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[33m&quot;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[0m&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">_color_selected</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">selected</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Return the string but with ansi colors for (un)selected experiments.</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Return the string but with ansi colors for (un)selected experiments.&quot;&quot;&quot;</span>
     <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[32;1m&quot;</span> <span class="k">if</span> <span class="n">selected</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[91;2m&quot;</span>
     <span class="k">return</span> <span class="n">col</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u001b</span><span class="s2">[0m&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">_max_name_len</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Gives the length of the longest used name.</span>
+    <span class="sd">&quot;&quot;&quot;Gives the length of the longest used name.</span>
 
 <span class="sd">    Includes group and experiment names.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">runs_by_name</span><span class="p">])</span>
 
 
 <span class="k">class</span> <span class="nc">_State</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;Internal state.</span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="sd">&quot;&quot;&quot;Internal state.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">runs_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">counts_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;ungrouped&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;ungrouped&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -588,9 +600,9 @@ examples</a>.</p>
 
 
 <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Instance of the internal state.</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 
         </details>
@@ -619,19 +631,21 @@ examples</a>.</p>
 
                 <details>
             <summary>View Source</summary>
-            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
-        <span class="n">command</span><span class="p">,</span>
-        <span class="n">arguments_descr</span><span class="p">,</span>
-        <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
-        <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
-        <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Add a new experiment.</span>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">command</span><span class="p">,</span>
+    <span class="n">arguments_descr</span><span class="p">,</span>
+    <span class="n">creates_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stdout_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stdout_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+    <span class="n">stdout_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_command</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">header_mod</span><span class="o">=</span><span class="n">_identity</span><span class="p">,</span>
+    <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">combinations_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">args</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add a new experiment.</span>
 
 <span class="sd">    Based on the experiment description, a set of inidvidual runs is</span>
 <span class="sd">    generated, where each individual run basically corresponds to a</span>
@@ -740,35 +754,38 @@ examples</a>.</p>
 <span class="sd">      ``False``.  The default returns always ``True``, i.e., a run is</span>
 <span class="sd">      created for every combination.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_res has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span>
-                       <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_command has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_string and header_command specified&quot;</span>
-                       <span class="s2">&quot; - Which one should I use?&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> \
-       <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
-                       <span class="s2">&quot;header_string or header_command are specified&quot;</span><span class="p">)</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_string and header_command specified&quot;</span> <span class="s2">&quot; - Which one should I use?&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">header_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">header_string</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">header_command</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_print_warning</span><span class="p">(</span>
+            <span class="s2">&quot;header_mod has no effect if not one of &quot;</span>
+            <span class="s2">&quot;header_string or header_command are specified&quot;</span>
+        <span class="p">)</span>
 
     <span class="c1"># generate the set of arguments</span>
-    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
-                       <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span> <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span>
-                     <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+    <span class="n">arguments_descr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">arguments_descr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">arguments_set</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">vals</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">arguments_descr</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="p">]</span>
 
     <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">arguments_set</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">combinations_filter</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -780,18 +797,20 @@ examples</a>.</p>
         <span class="k">if</span> <span class="n">real_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]:</span>
             <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">_state</span><span class="o">.</span><span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real_name</span><span class="p">)</span>
 
-        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
-                   <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-                   <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
-                   <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
-                   <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
-                   <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
-                   <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
-                   <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">))</span>
+        <span class="n">run</span> <span class="o">=</span> <span class="n">_Run</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">real_name</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">creates_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">creates_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">stdout_file</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">stdout_file</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">stdout_mod</span><span class="o">=</span><span class="n">stdout_mod</span><span class="p">,</span>
+            <span class="n">stdout_res</span><span class="o">=</span><span class="n">stdout_res</span><span class="p">,</span>
+            <span class="n">header_string</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_string</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">header_command</span><span class="o">=</span><span class="n">deblob</span><span class="p">(</span><span class="n">header_command</span><span class="p">,</span> <span class="n">args</span><span class="p">),</span>
+            <span class="n">header_mod</span><span class="o">=</span><span class="n">header_mod</span><span class="p">,</span>
+            <span class="n">allowed_return_codes</span><span class="o">=</span><span class="n">allowed_return_codes</span><span class="p">,</span>
+            <span class="n">is_selected</span><span class="o">=</span><span class="n">_is_selected</span><span class="p">(</span><span class="n">real_name</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="n">_add_run</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
 </pre></div>
 
@@ -898,14 +917,14 @@ created for every combination.</li>
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;Run the previously declared experiments.</span>
+    <span class="sd">&quot;&quot;&quot;Run the previously declared experiments.</span>
 
 <span class="sd">    You should call this exactly once at the end of the file.</span>
 
 <span class="sd">    If ``dry_run`` is given as command line parameter, then the runs are</span>
 <span class="sd">    not executed but the commands printed to ``stdout``.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
@@ -926,9 +945,11 @@ created for every combination.</li>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
         <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
-                               <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
-                               <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
+                <span class="n">pool</span><span class="o">.</span><span class="n">uimap</span><span class="p">(</span><span class="n">_run_run</span><span class="p">,</span> <span class="n">runs</span><span class="p">),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="n">name</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">_max_name_len</span><span class="p">()),</span>
+                <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">runs</span><span class="p">),</span>
+            <span class="p">):</span>
                 <span class="k">pass</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
@@ -968,7 +989,7 @@ not executed but the commands printed to <code>stdout</code>.</p>
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="n">group_name</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Set the current group.</span>
+    <span class="sd">&quot;&quot;&quot;Set the current group.</span>
 
 <span class="sd">    Each experiment created with ``add()`` is added to the group for</span>
 <span class="sd">    which this function was last called.</span>
@@ -980,7 +1001,7 @@ not executed but the commands printed to <code>stdout</code>.</p>
 
 <span class="sd">      The name of the group.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group_name</span>
     <span class="k">if</span> <span class="n">group_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
         <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1014,7 +1035,7 @@ The name of the group.</li>
                 <details>
             <summary>View Source</summary>
             <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">deblob</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Transforms a blob into a string.</span>
+    <span class="sd">&quot;&quot;&quot;Transforms a blob into a string.</span>
 
 <span class="sd">    This function is meant for internal use but understanding what it</span>
 <span class="sd">    does might be useful.  A blob is transferred into a string in the</span>
@@ -1042,7 +1063,7 @@ The name of the group.</li>
 
 <span class="sd">      The named arguments of the current run.</span>
 
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">blob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 

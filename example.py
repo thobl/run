@@ -12,59 +12,61 @@ run.group("basics")
 run.add(
     "create_files",
     "touch [[file]]",
-    {'a': [1, 2], 'b': [1, 2, 3], 'c': 0,
-     'file': "output/a=[[a]]_b=[[b]]_c=[[c]].txt"},
-    creates_file="[[file]]"
+    {"a": [1, 2], "b": [1, 2, 3], "c": 0, "file": "output/a=[[a]]_b=[[b]]_c=[[c]].txt"},
+    creates_file="[[file]]",
 )
 
 run.add(
     "sum",
     "echo $(([[a]] + [[b]]))",
-    {'a': [1, 2], 'b': [1, 2, 3]},
-    stdout_file="output/[[a]]+[[b]].txt"
+    {"a": [1, 2], "b": [1, 2, 3]},
+    stdout_file="output/[[a]]+[[b]].txt",
 )
 
 run.add(
     "sum",
     "echo $(([[a]] + [[b]]))",
-    {'a': [1, 2], 'b': [3, 4]},
+    {"a": [1, 2], "b": [3, 4]},
     stdout_file="output/sums.txt",
-    stdout_res="[[a]] + [[b]] = [[stdout]]"
+    stdout_res="[[a]] + [[b]] = [[stdout]]",
 )
 
 run.group("blobs")
 
-res_name = {'+': "sum", '-': "diff", '*': "prod", '/': "quot"}
+res_name = {"+": "sum", "-": "diff", "*": "prod", "/": "quot"}
 run.add(
     "calculate",
     "echo $(([[a]] [[operator]] [[b]]))",
-    {'a': [1, 2], 'b': [3, 4],
-     'operator': ["+", "-", "*", "/"]
-     },
-    stdout_file=lambda args: "output/" + res_name[args['operator']] + ".txt",
-    stdout_res="[[a]] [[operator]] [[b]] = [[stdout]]"
+    {"a": [1, 2], "b": [3, 4], "operator": ["+", "-", "*", "/"]},
+    stdout_file=lambda args: "output/" + res_name[args["operator"]] + ".txt",
+    stdout_res="[[a]] [[operator]] [[b]] = [[stdout]]",
 )
 
 run.add(
     "sum_of_squares",
     "echo $(([[a]] * [[a]] + [[b]] * [[b]] + [[c]] * [[c]]))",
-    {'a': lambda args: args['triple']['a'],
-     'b': lambda args: args['triple']['b'],
-     'c': lambda args: args['triple']['c'],
-     'triple': [{'a': a, 'b': b, 'c': c}
-                for a in range(0, 5) for b in range(0, 5) for c in range(0, 5)
-                if a + b + c == 4],
-     'file': "output/sum_of_squares_[[a]]_[[b]]_[[c]].txt"
-     },
-    stdout_file="[[file]]"
+    {
+        "a": lambda args: args["triple"]["a"],
+        "b": lambda args: args["triple"]["b"],
+        "c": lambda args: args["triple"]["c"],
+        "triple": [
+            {"a": a, "b": b, "c": c}
+            for a in range(0, 5)
+            for b in range(0, 5)
+            for c in range(0, 5)
+            if a + b + c == 4
+        ],
+        "file": "output/sum_of_squares_[[a]]_[[b]]_[[c]].txt",
+    },
+    stdout_file="[[file]]",
 )
 
 run.add(
     "better_sum_of_squares",
     "echo $(([[a]] * [[a]] + [[b]] * [[b]] + [[c]] * [[c]]))",
-    {'a': list(range(0, 5)), 'b': list(range(0, 5)), 'c': list(range(0, 5))},
+    {"a": list(range(0, 5)), "b": list(range(0, 5)), "c": list(range(0, 5))},
     stdout_file="output/sum_of_squares_[[a]]_[[b]]_[[c]]_good.txt",
-    combinations_filter=lambda args: args['a'] + args['b'] + args['c'] == 4
+    combinations_filter=lambda args: args["a"] + args["b"] + args["c"] == 4,
 )
 
 run.group("headers")
@@ -72,18 +74,17 @@ run.group("headers")
 run.add(
     "algo",
     "algo [[input]]",
-    {'input': ["file1", "file2", "file3"]},
+    {"input": ["file1", "file2", "file3"]},
     stdout_file="output.csv",
-    header_command="algo --only-header"
+    header_command="algo --only-header",
 )
 
 run.add(
     "algos",
     "[[algo]] [[input]]",
-    {'algo': ["algo1", "algo2"],
-     'input': ["file1", "file2", "file3"]},
+    {"algo": ["algo1", "algo2"], "input": ["file1", "file2", "file3"]},
     stdout_file="output_[[algo]].csv",
-    header_command="[[algo]] --only-header"
+    header_command="[[algo]] --only-header",
 )
 
 run.group("error_handling")
@@ -91,24 +92,28 @@ run.group("error_handling")
 run.add(
     "timeouts",
     "timeout 2 sleep [[time]] && echo waking up",
-    {'time': [0, 1, 2, 3, 4]},
+    {"time": [0, 1, 2, 3, 4]},
     stdout_file="output/timeouts.txt",
     allowed_return_codes=[0, 124],
     stdout_res=lambda args: (
-        "sleeping [[time]]s -> [[stdout]]" if args['stdout'] != "" else
-        "sleeping [[time]]s -> timeout")
+        "sleeping [[time]]s -> [[stdout]]"
+        if args["stdout"] != ""
+        else "sleeping [[time]]s -> timeout"
+    ),
 )
 
 run.group("calculations")
 run.add(
     "calculate_[[op_name]]",
     "echo $(([[a]] [[operator]] [[b]]))",
-    {'a': [1, 2], 'b': [3, 4],
-     'operator': ["+", "-", "*", "/"],
-     'op_name': lambda args: res_name[args['operator']]
-     },
+    {
+        "a": [1, 2],
+        "b": [3, 4],
+        "operator": ["+", "-", "*", "/"],
+        "op_name": lambda args: res_name[args["operator"]],
+    },
     stdout_file="output/result_[[op_name]].txt",
-    stdout_res="[[a]] [[operator]] [[b]] = [[stdout]]"
+    stdout_res="[[a]] [[operator]] [[b]] = [[stdout]]",
 )
 
 run.run()
