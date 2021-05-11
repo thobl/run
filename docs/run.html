@@ -34,7 +34,7 @@
                     <a class="function" href="#run">run</a>
             </li>
             <li>
-                    <a class="variable" href="#cores">cores</a>
+                    <a class="function" href="#use_cores">use_cores</a>
             </li>
             <li>
                     <a class="function" href="#group">group</a>
@@ -376,7 +376,7 @@ examples</a>.</p>
             <span class="k">continue</span>
         <span class="c1"># run in parallel</span>
         <span class="n">orig_sigint_handler</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
-        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">_cores</span><span class="p">)</span>
         <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
@@ -389,7 +389,22 @@ examples</a>.</p>
             <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
 
 
-<span class="n">cores</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="k">def</span> <span class="nf">use_cores</span><span class="p">(</span><span class="n">nr_cores</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the number of cores used to run the experiments.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    nr_cores: int</span>
+
+<span class="sd">      The number of cores that should be used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_cores</span>
+    <span class="n">_cores</span> <span class="o">=</span> <span class="n">nr_cores</span>
+
+
+<span class="n">_cores</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="sd">&quot;&quot;&quot;The number of cores used to run the experiments.&quot;&quot;&quot;</span>
 
 
@@ -942,7 +957,7 @@ created for every combination.</li>
             <span class="k">continue</span>
         <span class="c1"># run in parallel</span>
         <span class="n">orig_sigint_handler</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
-        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">ProcessingPool</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="n">_cores</span><span class="p">)</span>
         <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">orig_sigint_handler</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
@@ -967,13 +982,41 @@ not executed but the commands printed to <code>stdout</code>.</p>
 
 
                 </section>
-                <section id="cores">
-                                <div class="attr variable"><a class="headerlink" href="#cores">#&nbsp;&nbsp</a>
+                <section id="use_cores">
+                            <div class="attr function"><a class="headerlink" href="#use_cores">#&nbsp;&nbsp</a>
 
-        <span class="name">cores</span><span class="default_value"> = 4</span>
+        
+            <span class="def">def</span>
+            <span class="name">use_cores</span><span class="signature">(nr_cores)</span>:
     </div>
 
-            <div class="docstring"><p>The number of cores used to run the experiments.</p>
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">use_cores</span><span class="p">(</span><span class="n">nr_cores</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the number of cores used to run the experiments.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    nr_cores: int</span>
+
+<span class="sd">      The number of cores that should be used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_cores</span>
+    <span class="n">_cores</span> <span class="o">=</span> <span class="n">nr_cores</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Set the number of cores used to run the experiments.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>nr_cores</strong> (int):
+The number of cores that should be used.</li>
+</ul>
 </div>
 
 

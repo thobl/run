@@ -306,7 +306,7 @@ def run():
             continue
         # run in parallel
         orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-        pool = ProcessingPool(nodes=cores)
+        pool = ProcessingPool(nodes=_cores)
         signal.signal(signal.SIGINT, orig_sigint_handler)
         try:
             for _ in tqdm.tqdm(
@@ -319,7 +319,22 @@ def run():
             _print_warning("aborted during experiment " + name)
 
 
-cores = 4
+def use_cores(nr_cores):
+    """Set the number of cores used to run the experiments.
+
+    Parameters
+    ----------
+
+    nr_cores: int
+
+      The number of cores that should be used.
+
+    """
+    global _cores
+    _cores = nr_cores
+
+
+_cores = 4
 """The number of cores used to run the experiments."""
 
 

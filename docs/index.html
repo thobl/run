@@ -586,8 +586,8 @@ sum_of_squares calculations</code> yields the following output.</p>
 <h2 id="parallelization">Parallelization</h2>
 
 <p>Runs from the same experiment are run in parallel and you can choose
-how many threads to use by setting <code><a href="run.html#cores">run.cores</a></code>.  The default is
-<code><a href="run.html#cores">run.cores</a> = 4</code>.</p>
+how many threads to use by calling <code><a href="run.html#use_cores">run.use_cores</a>(nr_cores)</code>.  By
+default, <code>4</code> cores are used.</p>
 
 <p><strong>Note:</strong> There is no parallelization between different experiments,
 i.e., in the above example, all runs from <code>sum</code> have to finish
@@ -1161,8 +1161,8 @@ should be stored does not exist, it is created.</p>
 <span class="sd">## Parallelization</span>
 
 <span class="sd">Runs from the same experiment are run in parallel and you can choose</span>
-<span class="sd">how many threads to use by setting ``run.cores``.  The default is</span>
-<span class="sd">``run.cores = 4``.</span>
+<span class="sd">how many threads to use by calling ``run.use_cores(nr_cores)``.  By</span>
+<span class="sd">default, ``4`` cores are used.</span>
 
 <span class="sd">**Note:** There is no parallelization between different experiments,</span>
 <span class="sd">i.e., in the above example, all runs from ``sum`` have to finish</span>

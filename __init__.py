@@ -1,4 +1,4 @@
-from run.run import add, run, cores, group
+from run.run import add, run, use_cores, group
 
 if "docs" in locals():
     del docs

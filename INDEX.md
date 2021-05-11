@@ -543,8 +543,8 @@ sum_of_squares calculations`` yields the following output.
 ## Parallelization
 
 Runs from the same experiment are run in parallel and you can choose
-how many threads to use by setting ``run.cores``.  The default is
-``run.cores = 4``.
+how many threads to use by calling ``run.use_cores(nr_cores)``.  By
+default, ``4`` cores are used.
 
 **Note:** There is no parallelization between different experiments,
 i.e., in the above example, all runs from ``sum`` have to finish
