@@ -475,7 +475,13 @@ def _execute(command):
     This is a wrapper for ``subprocess.run()``.
 
     """
-    return subprocess.run(command, shell=True, capture_output=True, text=True)
+    return subprocess.run(
+        command,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        universal_newlines=True,
+    )
 
 
 def _print_warning(string):
