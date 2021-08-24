@@ -427,7 +427,9 @@ def _run_run(run):
         and run.allowed_return_codes != []
     ):
         _print_warning(
-            "unexpected return code for command: "
+            "unexpected return code ("
+            + str(res.returncode)
+            + ") for command: "
             + res.args
             + "\n"
             + res.stderr.strip()
