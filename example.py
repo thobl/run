@@ -102,6 +102,19 @@ run.add(
     ),
 )
 
+run.add(
+    "timeouts",
+    "timeout 2 sleep [[time]] && echo waking up",
+    {"time": [0, 1, 2, 3, 4]},
+    stdout_file="output/timeouts.txt",
+    allowed_return_codes=[0, 124],
+    stdout_mod=lambda out, res: (
+        "sleeping [[time]]s -> [[stdout]]"
+        if res.returncode == 0
+        else "sleeping [[time]]s -> timeout"
+    ),
+)
+
 run.group("calculations")
 run.add(
     "calculate_[[op_name]]",

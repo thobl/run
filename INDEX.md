@@ -149,8 +149,9 @@ six files with different values for a and b, each of which contains
 the sum of a and b as content.
 
 You can postprocess ``stdout`` (given as string) by providing the
-parameters ``stdout_mod`` (a function) or ``stdout_res`` (a blob).  If
-both are provided, they are applied in this order.
+parameters ``stdout_mod`` (a function returning a blob) or
+``stdout_res`` (a blob).  If both are provided, they are applied in
+this order.
 
 The function ``stdout_mod`` gets ``stdout`` as input its return value
 replaces ``stdout``.  This can serve as some kind of parser that,
@@ -475,6 +476,29 @@ sleeping 3s -> timeout
 sleeping 4s -> timeout
 sleeping 2s -> timeout
 ```
+
+The above example relies on the fact that the standard output is the
+empty string in case of an error.  The following yields the same
+result but explicitly checks for the return code using ``stdout_mod``
+instead of ``stdout_res``.
+
+```python
+run.add(
+    "timeouts",
+    "timeout 2 sleep [[time]] && echo waking up",
+    {"time": [0, 1, 2, 3, 4]},
+    stdout_file="output/timeouts.txt",
+    allowed_return_codes=[0, 124],
+    stdout_mod=lambda out, res: (
+        "sleeping [[time]]s -> [[stdout]]"
+        if res.returncode == 0
+        else "sleeping [[time]]s -> timeout"
+    ),
+)
+```
+
+In the above example, one could also use the parameter ``out``
+directly instead of using the wildcard ``[[stdout]]``.
 
 # Miscellaneous Features
 

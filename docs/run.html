@@ -201,7 +201,9 @@ examples</a>.</p>
 <span class="sd">      gets the standard output as string as input.  Otherwise, it</span>
 <span class="sd">      should take two arguments, the standard output as string and the</span>
 <span class="sd">      result of a call to ``subprocess.run()``.  The latter gives</span>
-<span class="sd">      access to additional information such as the return code.</span>
+<span class="sd">      access to additional information such as the return code.  The</span>
+<span class="sd">      function can return a blob using the special wildcard</span>
+<span class="sd">      ``[[stdout]]`` (similar to ``stdout_res``).</span>
 
 <span class="sd">    stdout_res: blob, optional</span>
 
@@ -497,7 +499,9 @@ examples</a>.</p>
         <span class="ow">and</span> <span class="n">run</span><span class="o">.</span><span class="n">allowed_return_codes</span> <span class="o">!=</span> <span class="p">[]</span>
     <span class="p">):</span>
         <span class="n">_print_warning</span><span class="p">(</span>
-            <span class="s2">&quot;unexpected return code for command: &quot;</span>
+            <span class="s2">&quot;unexpected return code (&quot;</span>
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">returncode</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot;) for command: &quot;</span>
             <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">args</span>
             <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -530,6 +534,9 @@ examples</a>.</p>
     <span class="n">stdout</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="n">mod</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_mod</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">mod</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mod</span> <span class="o">!=</span> <span class="n">_identity</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stdout</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">deblob</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">stdout_res</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
@@ -545,7 +552,13 @@ examples</a>.</p>
 <span class="sd">    This is a wrapper for ``subprocess.run()``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">command</span><span class="p">,</span>
+        <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_print_warning</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
@@ -728,7 +741,9 @@ examples</a>.</p>
 <span class="sd">      gets the standard output as string as input.  Otherwise, it</span>
 <span class="sd">      should take two arguments, the standard output as string and the</span>
 <span class="sd">      result of a call to ``subprocess.run()``.  The latter gives</span>
-<span class="sd">      access to additional information such as the return code.</span>
+<span class="sd">      access to additional information such as the return code.  The</span>
+<span class="sd">      function can return a blob using the special wildcard</span>
+<span class="sd">      ``[[stdout]]`` (similar to ``stdout_res``).</span>
 
 <span class="sd">    stdout_res: blob, optional</span>
 
@@ -888,7 +903,9 @@ writing it to the file.  If the function takes one argument, it
 gets the standard output as string as input.  Otherwise, it
 should take two arguments, the standard output as string and the
 result of a call to <code>subprocess.run()</code>.  The latter gives
-access to additional information such as the return code.</li>
+access to additional information such as the return code.  The
+function can return a blob using the special wildcard
+<code>[[stdout]]</code> (similar to <code>stdout_res</code>).</li>
 <li><strong>stdout_res</strong> (blob, optional):
 If given, this blob is written to the file instead of the
 standard output itself.  This blob is somewhat special in the

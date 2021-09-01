@@ -205,8 +205,9 @@ six files with different values for a and b, each of which contains
 the sum of a and b as content.</p>
 
 <p>You can postprocess <code>stdout</code> (given as string) by providing the
-parameters <code>stdout_mod</code> (a function) or <code>stdout_res</code> (a blob).  If
-both are provided, they are applied in this order.</p>
+parameters <code>stdout_mod</code> (a function returning a blob) or
+<code>stdout_res</code> (a blob).  If both are provided, they are applied in
+this order.</p>
 
 <p>The function <code>stdout_mod</code> gets <code>stdout</code> as input its return value
 replaces <code>stdout</code>.  This can serve as some kind of parser that,
@@ -521,6 +522,28 @@ sleeping 4s -&gt; timeout
 sleeping 2s -&gt; timeout
 </code></pre></div>
 
+<p>The above example relies on the fact that the standard output is the
+empty string in case of an error.  The following yields the same
+result but explicitly checks for the return code using <code>stdout_mod</code>
+instead of <code>stdout_res</code>.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">run</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="s2">&quot;timeouts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout 2 sleep [[time]] &amp;&amp; echo waking up&quot;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span>
+    <span class="n">stdout_file</span><span class="o">=</span><span class="s2">&quot;output/timeouts.txt&quot;</span><span class="p">,</span>
+    <span class="n">allowed_return_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">124</span><span class="p">],</span>
+    <span class="n">stdout_mod</span><span class="o">=</span><span class="k">lambda</span> <span class="n">out</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s2">&quot;sleeping [[time]]s -&gt; [[stdout]]&quot;</span>
+        <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">else</span> <span class="s2">&quot;sleeping [[time]]s -&gt; timeout&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>In the above example, one could also use the parameter <code>out</code>
+directly instead of using the wildcard <code>[[stdout]]</code>.</p>
+
 <h1 id="miscellaneous-features">Miscellaneous Features</h1>
 
 <p>There are some features that are not at the core of <code><a href="run.html">run</a></code> in the sense
@@ -767,8 +790,9 @@ should be stored does not exist, it is created.</p>
 <span class="sd">the sum of a and b as content.</span>
 
 <span class="sd">You can postprocess ``stdout`` (given as string) by providing the</span>
-<span class="sd">parameters ``stdout_mod`` (a function) or ``stdout_res`` (a blob).  If</span>
-<span class="sd">both are provided, they are applied in this order.</span>
+<span class="sd">parameters ``stdout_mod`` (a function returning a blob) or</span>
+<span class="sd">``stdout_res`` (a blob).  If both are provided, they are applied in</span>
+<span class="sd">this order.</span>
 
 <span class="sd">The function ``stdout_mod`` gets ``stdout`` as input its return value</span>
 <span class="sd">replaces ``stdout``.  This can serve as some kind of parser that,</span>
@@ -1093,6 +1117,29 @@ should be stored does not exist, it is created.</p>
 <span class="sd">sleeping 4s -&gt; timeout</span>
 <span class="sd">sleeping 2s -&gt; timeout</span>
 <span class="sd">```</span>
+
+<span class="sd">The above example relies on the fact that the standard output is the</span>
+<span class="sd">empty string in case of an error.  The following yields the same</span>
+<span class="sd">result but explicitly checks for the return code using ``stdout_mod``</span>
+<span class="sd">instead of ``stdout_res``.</span>
+
+<span class="sd">```python</span>
+<span class="sd">run.add(</span>
+<span class="sd">    &quot;timeouts&quot;,</span>
+<span class="sd">    &quot;timeout 2 sleep [[time]] &amp;&amp; echo waking up&quot;,</span>
+<span class="sd">    {&quot;time&quot;: [0, 1, 2, 3, 4]},</span>
+<span class="sd">    stdout_file=&quot;output/timeouts.txt&quot;,</span>
+<span class="sd">    allowed_return_codes=[0, 124],</span>
+<span class="sd">    stdout_mod=lambda out, res: (</span>
+<span class="sd">        &quot;sleeping [[time]]s -&gt; [[stdout]]&quot;</span>
+<span class="sd">        if res.returncode == 0</span>
+<span class="sd">        else &quot;sleeping [[time]]s -&gt; timeout&quot;</span>
+<span class="sd">    ),</span>
+<span class="sd">)</span>
+<span class="sd">```</span>
+
+<span class="sd">In the above example, one could also use the parameter ``out``</span>
+<span class="sd">directly instead of using the wildcard ``[[stdout]]``.</span>
 
 <span class="sd"># Miscellaneous Features</span>
 

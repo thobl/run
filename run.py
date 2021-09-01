@@ -131,7 +131,9 @@ def add(
       gets the standard output as string as input.  Otherwise, it
       should take two arguments, the standard output as string and the
       result of a call to ``subprocess.run()``.  The latter gives
-      access to additional information such as the return code.
+      access to additional information such as the return code.  The
+      function can return a blob using the special wildcard
+      ``[[stdout]]`` (similar to ``stdout_res``).
 
     stdout_res: blob, optional
 
@@ -462,6 +464,9 @@ def _run_run(run):
     stdout = res.stdout.strip()
     mod = run.stdout_mod
     output = mod(stdout) if len(signature(mod).parameters) == 1 else mod(stdout, res)
+    if mod != _identity:
+        run.args["stdout"] = stdout
+        output = deblob(output, run.args)
     if run.stdout_res is not None:
         run.args["stdout"] = output
         output = deblob(run.stdout_res, run.args)
