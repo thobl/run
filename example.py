@@ -129,4 +129,19 @@ run.add(
     stdout_res="[[a]] [[operator]] [[b]] = [[stdout]]",
 )
 
+run.group("")
+
+run.run()
+
+import glob
+
+files = glob.glob("output/*.txt")
+
+run.add(
+    "copy_files",
+    "cp [[file]] [[copy]]",
+    {"file": files, "copy": "[[file]].copy"},
+    creates_file="[[copy]]",
+)
+
 run.run()

@@ -41,6 +41,8 @@
     <li><a href="#parallelization">Parallelization</a></li>
     <li><a href="#dry-run">Dry Run</a></li>
     <li><a href="#creating-directories">Creating Directories</a></li>
+    <li><a href="#multiple-runs-in-one-script">Multiple Runs in One Script</a></li>
+    <li><a href="#section-headlines">Section Headlines</a></li>
   </ul></li>
   <li><a href="#interface-documentationrunhtml"><a href="./run.html">Interface Documentation</a></a></li>
 </ul>
@@ -632,6 +634,49 @@ runs would have been called.</p>
 
 <p>If you use <code>stdout_file</code> and the directory where the output file
 should be stored does not exist, it is created.</p>
+
+<h2 id="multiple-runs-in-one-script">Multiple Runs in One Script</h2>
+
+<p>You can call <code><a href="run.html#run">run.run()</a></code> multiple times in one script.  Each call
+after the first considers only the runs added after the previous call.
+This is useful when there are some experiments that create files and
+then later experiments do something for each file created earlier.
+This is demonstrated in the following example, where <code>create_files</code>
+creates some <code>.txt</code> files while <code>copy_files</code> copies all <code>.txt</code>
+files that are found by
+<a href="https://docs.python.org/3/library/glob.html#glob.glob"><code>glob.glob("output/*.txt")</code></a>.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">run</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="s2">&quot;create_files&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;touch [[file]]&quot;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;output/a=[[a]]_b=[[b]]_c=[[c]].txt&quot;</span><span class="p">},</span>
+    <span class="n">creates_file</span><span class="o">=</span><span class="s2">&quot;[[file]]&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">run</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;output/*.txt&quot;</span><span class="p">)</span>
+
+<span class="n">run</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="s2">&quot;copy_files&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cp [[file]] [[copy]]&quot;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">files</span><span class="p">,</span> <span class="s2">&quot;copy&quot;</span><span class="p">:</span> <span class="s2">&quot;[[file]].copy&quot;</span><span class="p">},</span>
+    <span class="n">creates_file</span><span class="o">=</span><span class="s2">&quot;[[copy]]&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">run</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Without the first call to <code><a href="run.html#run">run.run()</a></code>,
+<a href="https://docs.python.org/3/library/glob.html#glob.glob"><code>glob.glob()</code></a>
+would not find the files created by <code>create_file</code> as they are not
+yet created.  Thus, one would have to call the script twice to do both
+experiments.  With the additional call to <code><a href="run.html#run">run.run()</a></code>, one can run
+<code>create_files</code> and <code>copy_files</code> in one execution of the script.</p>
+
+<h2 id="section-headlines">Section Headlines</h2>
+
+<p>You can call <code><a href="run.html#section">run.section()</a></code> to print a section title (e.g., to
+structure the output in case of multiple run calls).</p>
 
 <h1 id="interface-documentationrunhtml"><a href="./run.html">Interface Documentation</a></h1>
 </div>
@@ -1231,6 +1276,50 @@ should be stored does not exist, it is created.</p>
 
 <span class="sd">If you use ``stdout_file`` and the directory where the output file</span>
 <span class="sd">should be stored does not exist, it is created.</span>
+
+<span class="sd">## Multiple Runs in One Script</span>
+
+<span class="sd">You can call ``run.run()`` multiple times in one script.  Each call</span>
+<span class="sd">after the first considers only the runs added after the previous call.</span>
+<span class="sd">This is useful when there are some experiments that create files and</span>
+<span class="sd">then later experiments do something for each file created earlier.</span>
+<span class="sd">This is demonstrated in the following example, where ``create_files``</span>
+<span class="sd">creates some ``.txt`` files while ``copy_files`` copies all ``.txt``</span>
+<span class="sd">files that are found by</span>
+<span class="sd">[``glob.glob(&quot;output/*.txt&quot;)``](https://docs.python.org/3/library/glob.html#glob.glob).</span>
+
+<span class="sd">```python</span>
+<span class="sd">run.add(</span>
+<span class="sd">    &quot;create_files&quot;,</span>
+<span class="sd">    &quot;touch [[file]]&quot;,</span>
+<span class="sd">    {&quot;a&quot;: [1, 2], &quot;b&quot;: [1, 2, 3], &quot;c&quot;: 0, &quot;file&quot;: &quot;output/a=[[a]]_b=[[b]]_c=[[c]].txt&quot;},</span>
+<span class="sd">    creates_file=&quot;[[file]]&quot;,</span>
+<span class="sd">)</span>
+<span class="sd">run.run()</span>
+
+<span class="sd">import glob</span>
+<span class="sd">files = glob.glob(&quot;output/*.txt&quot;)</span>
+
+<span class="sd">run.add(</span>
+<span class="sd">    &quot;copy_files&quot;,</span>
+<span class="sd">    &quot;cp [[file]] [[copy]]&quot;,</span>
+<span class="sd">    {&quot;file&quot;: files, &quot;copy&quot;: &quot;[[file]].copy&quot;},</span>
+<span class="sd">    creates_file=&quot;[[copy]]&quot;,</span>
+<span class="sd">)</span>
+<span class="sd">run.run()</span>
+<span class="sd">```</span>
+
+<span class="sd">Without the first call to ``run.run()``,</span>
+<span class="sd">[``glob.glob()``](https://docs.python.org/3/library/glob.html#glob.glob)</span>
+<span class="sd">would not find the files created by ``create_file`` as they are not</span>
+<span class="sd">yet created.  Thus, one would have to call the script twice to do both</span>
+<span class="sd">experiments.  With the additional call to ``run.run()``, one can run</span>
+<span class="sd">``create_files`` and ``copy_files`` in one execution of the script.</span>
+
+<span class="sd">## Section Headlines</span>
+
+<span class="sd">You can call ``run.section()`` to print a section title (e.g., to</span>
+<span class="sd">structure the output in case of multiple run calls).</span>
 
 <span class="sd"># [Interface Documentation](./run.html)</span>
 

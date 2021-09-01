@@ -591,4 +591,48 @@ runs would have been called.
 If you use ``stdout_file`` and the directory where the output file
 should be stored does not exist, it is created.
 
+## Multiple Runs in One Script
+
+You can call ``run.run()`` multiple times in one script.  Each call
+after the first considers only the runs added after the previous call.
+This is useful when there are some experiments that create files and
+then later experiments do something for each file created earlier.
+This is demonstrated in the following example, where ``create_files``
+creates some ``.txt`` files while ``copy_files`` copies all ``.txt``
+files that are found by
+[``glob.glob("output/*.txt")``](https://docs.python.org/3/library/glob.html#glob.glob).
+
+```python
+run.add(
+    "create_files",
+    "touch [[file]]",
+    {"a": [1, 2], "b": [1, 2, 3], "c": 0, "file": "output/a=[[a]]_b=[[b]]_c=[[c]].txt"},
+    creates_file="[[file]]",
+)
+run.run()
+
+import glob
+files = glob.glob("output/*.txt")
+
+run.add(
+    "copy_files",
+    "cp [[file]] [[copy]]",
+    {"file": files, "copy": "[[file]].copy"},
+    creates_file="[[copy]]",
+)
+run.run()
+```
+
+Without the first call to ``run.run()``,
+[``glob.glob()``](https://docs.python.org/3/library/glob.html#glob.glob)
+would not find the files created by ``create_file`` as they are not
+yet created.  Thus, one would have to call the script twice to do both
+experiments.  With the additional call to ``run.run()``, one can run
+``create_files`` and ``copy_files`` in one execution of the script.
+
+## Section Headlines
+
+You can call ``run.section()`` to print a section title (e.g., to
+structure the output in case of multiple run calls).
+
 # [Interface Documentation](docs/run.html)

@@ -40,6 +40,9 @@
                     <a class="function" href="#group">group</a>
             </li>
             <li>
+                    <a class="function" href="#section">section</a>
+            </li>
+            <li>
                     <a class="function" href="#deblob">deblob</a>
             </li>
     </ul>
@@ -83,6 +86,7 @@ examples</a>.</p>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
 <span class="kn">from</span> <span class="nn">filelock</span> <span class="kn">import</span> <span class="n">SoftFileLock</span>
@@ -245,9 +249,6 @@ examples</a>.</p>
 <span class="sd">      created for every combination.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -361,14 +362,15 @@ examples</a>.</p>
 <span class="sd">    not executed but the commands printed to ``stdout``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">_state</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">time_start_run</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
     <span class="n">_print_runs</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">_is_selected</span><span class="p">(</span><span class="s2">&quot;dry_run&quot;</span><span class="p">):</span>
         <span class="n">_run_dry</span><span class="p">()</span>
+        <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">running the experiments:&quot;</span><span class="p">)</span>
@@ -389,6 +391,7 @@ examples</a>.</p>
                 <span class="k">pass</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">use_cores</span><span class="p">(</span><span class="n">nr_cores</span><span class="p">):</span>
@@ -439,6 +442,20 @@ examples</a>.</p>
     <span class="n">_state</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group_name</span>
     <span class="k">if</span> <span class="n">group_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
         <span class="n">_state</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a section title.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    title: string</span>
+
+<span class="sd">      The title that should be printed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_print_section</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">deblob</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
@@ -620,11 +637,36 @@ examples</a>.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">counts_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;ungrouped&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_start_run</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runs_by_name</span> <span class="o">==</span> <span class="p">{}:</span>
+            <span class="k">return</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
-            <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was never called&quot;</span><span class="p">)</span>
+            <span class="n">_print_warning</span><span class="p">(</span>
+                <span class="s2">&quot;Some runs were added without calling run(). &quot;</span>
+                <span class="s2">&quot;Did you forget to call run() at the end of the script?&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">total_runs</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts_by_name</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;time for gathering </span><span class="si">{0:d}</span><span class="s2"> runs: </span><span class="si">{1:.2f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">total_runs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_start_run</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;time for running the experiments: </span><span class="si">{0:.2f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_start_run</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
 
 
 <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
@@ -785,9 +827,6 @@ examples</a>.</p>
 <span class="sd">      created for every combination.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;adding new experiment after run() was already called&quot;</span><span class="p">)</span>
-
     <span class="k">if</span> <span class="n">stdout_mod</span> <span class="o">!=</span> <span class="n">_identity</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;stdout_mod has no effect if stdout_file is not &quot;</span> <span class="s2">&quot;specified&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">stdout_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stdout_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -957,14 +996,15 @@ created for every combination.</li>
 <span class="sd">    not executed but the commands printed to ``stdout``.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span><span class="p">:</span>
-        <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;run() was called more than once&quot;</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">_state</span>
     <span class="n">_state</span><span class="o">.</span><span class="n">run_was_called</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">_state</span><span class="o">.</span><span class="n">time_start_run</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
     <span class="n">_print_runs</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">_is_selected</span><span class="p">(</span><span class="s2">&quot;dry_run&quot;</span><span class="p">):</span>
         <span class="n">_run_dry</span><span class="p">()</span>
+        <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
         <span class="k">return</span>
 
     <span class="n">_print_section</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">running the experiments:&quot;</span><span class="p">)</span>
@@ -985,6 +1025,7 @@ created for every combination.</li>
                 <span class="k">pass</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">_print_warning</span><span class="p">(</span><span class="s2">&quot;aborted during experiment &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">_state</span> <span class="o">=</span> <span class="n">_State</span><span class="p">()</span>
 </pre></div>
 
         </details>
@@ -1079,6 +1120,44 @@ which this function was last called.</p>
 <ul>
 <li><strong>group_name</strong> (string):
 The name of the group.</li>
+</ul>
+</div>
+
+
+                </section>
+                <section id="section">
+                            <div class="attr function"><a class="headerlink" href="#section">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">section</span><span class="signature">(title)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">section</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print a section title.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    title: string</span>
+
+<span class="sd">      The title that should be printed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_print_section</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Print a section title.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>title</strong> (string):
+The title that should be printed.</li>
 </ul>
 </div>
 

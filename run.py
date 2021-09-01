@@ -13,6 +13,7 @@ import itertools
 import os
 import subprocess
 import signal
+import time
 from collections import namedtuple
 from inspect import signature
 from filelock import SoftFileLock
@@ -175,9 +176,6 @@ def add(
       created for every combination.
 
     """
-    if _state.run_was_called:
-        _print_warning("adding new experiment after run() was already called")
-
     if stdout_mod != _identity and stdout_file is None:
         _print_warning("stdout_mod has no effect if stdout_file is not " "specified")
     if stdout_res is not None and stdout_file is None:
@@ -291,14 +289,15 @@ def run():
     not executed but the commands printed to ``stdout``.
 
     """
-    if _state.run_was_called:
-        _print_warning("run() was called more than once")
+    global _state
     _state.run_was_called = True
+    _state.time_start_run = time.time()
 
     _print_runs()
 
     if _is_selected("dry_run"):
         _run_dry()
+        _state = _State()
         return
 
     _print_section("\nrunning the experiments:")
@@ -319,6 +318,7 @@ def run():
                 pass
         except KeyboardInterrupt:
             _print_warning("aborted during experiment " + name)
+    _state = _State()
 
 
 def use_cores(nr_cores):
@@ -369,6 +369,20 @@ def group(group_name):
     _state.group = group_name
     if group_name not in _state.groups:
         _state.groups[group_name] = []
+
+
+def section(title):
+    """Print a section title.
+
+    Parameters
+    ----------
+
+    title: string
+
+      The title that should be printed.
+
+    """
+    _print_section(title)
 
 
 def deblob(blob, args):
@@ -550,11 +564,36 @@ class _State:
         self.counts_by_name = dict()
         self.group = "ungrouped"
         self.groups = {self.group: []}
+        self.time_start = time.time()
+        self.time_start_run = time.time()
         self.run_was_called = False
 
     def __del__(self):
+        if self.runs_by_name == {}:
+            return
+
         if not self.run_was_called:
-            _print_warning("run() was never called")
+            _print_warning(
+                "Some runs were added without calling run(). "
+                "Did you forget to call run() at the end of the script?"
+            )
+            return
+
+        total_runs = sum(
+            [count[0] + count[1] for count in self.counts_by_name.values()]
+        )
+        print(
+            "time for gathering {0:d} runs: {1:.2f} seconds".format(
+                total_runs, self.time_start_run - self.time_start
+            )
+        )
+
+        print(
+            "time for running the experiments: {0:.2f} seconds".format(
+                time.time() - self.time_start_run
+            )
+        )
+        print()
 
 
 _state = _State()
