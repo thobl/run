@@ -60,6 +60,13 @@ can do so by simply adding `stdout_mod=reformat` to the above example.
 For more ways to reformat the output and for other features, see the
 [documentation](https://thobl.github.io/run/).
 
+## Installation
+
+To install the run module, call `pip install .` from the root
+directory of this repository.  Alternatively, you can copy the
+`run.py` or the whole repository (e.g., as a git submodule) to
+wherever you use it.
+
 ## Documentation
 
 The [documentation](https://thobl.github.io/run/) explains everything
