@@ -458,7 +458,8 @@ def _run_run(run):
 
     filename = run.stdout_file
     lock = filename + ".lock"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    if os.path.dirname(filename) != "":
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     # create new file with header
     if not os.path.isfile(filename) and (
