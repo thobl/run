@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="run",
-    version="1.0",
+    version="1.0.1",
     description="python module for running experiments",
     url="https://github.com/thobl/run",
     author="Thomas Bläsius",
