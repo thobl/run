@@ -73,3 +73,25 @@ The [documentation](https://thobl.github.io/run/) explains everything
 with a bunch of examples.  This is probably the place to start if you
 want to learn how things work.  For quick lookup, also see the
 [reference documentation](https://thobl.github.io/run/run.html).
+
+## Windows
+
+In principle, things should just work.  However, there are some
+pitfalls.
+
+
+  * For some reason (related to the fact that Windows does not have
+    `fork()`), you have to use the `if __name__ == "__main__"` guard
+    for multiprocessing.  Thus, if you want your script to work under
+    Windows, your call to `run()` should look as follows.
+
+    ```python
+    if __name__ == "__main__":
+        run.run()
+    ```
+  
+  * You might need to surround the name of the executable with `""`.
+    So if the command you want to call is, e.g., `code/release/algo -x
+    1 -y 2`, you need to write `run.add(..., '"code/release/algo" -x 1 -y
+    2', ...)`.  Without the surrounding `""`, Windows will call
+    `code`, which opens VS Code instead of running your algorithm.

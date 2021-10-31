@@ -18,7 +18,7 @@ from collections import namedtuple
 from inspect import signature
 from filelock import SoftFileLock
 import tqdm
-from pathos.multiprocessing import ProcessingPool
+from multiprocessing import Pool
 
 
 def _identity(inp):
@@ -307,17 +307,17 @@ def run():
             continue
         # run in parallel
         orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-        pool = ProcessingPool(nodes=_cores)
-        signal.signal(signal.SIGINT, orig_sigint_handler)
-        try:
-            for _ in tqdm.tqdm(
-                pool.uimap(_run_run, runs),
-                desc=name.ljust(_max_name_len()),
-                total=len(runs),
-            ):
-                pass
-        except KeyboardInterrupt:
-            _print_warning("aborted during experiment " + name)
+        with Pool(_cores) as pool:
+            signal.signal(signal.SIGINT, orig_sigint_handler)
+            try:
+                for _ in tqdm.tqdm(
+                    pool.imap_unordered(_run_run, runs),
+                    desc=name.ljust(_max_name_len()),
+                    total=len(runs),
+                ):
+                    pass
+            except KeyboardInterrupt:
+                _print_warning("aborted during experiment " + name)
     _state = _State()
 
 
@@ -554,6 +554,8 @@ def _max_name_len():
     Includes group and experiment names.
 
     """
+    if _state.runs_by_name == {}:
+        return 0
     return max([len(name) for name in _state.runs_by_name])
 
 
