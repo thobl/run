@@ -1,3 +1,8 @@
+# 1.0.3
+
+  * **bugfix:** Switching back to pathos as multiprocessing can't
+    pickle lambdas while pathos can (this is relevant for using
+    lambdas with stdout_mod).
 
 # 1.0.2
 
