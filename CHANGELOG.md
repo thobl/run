@@ -1,3 +1,8 @@
+# 1.0.4
+  * **bugfix:** After updating some library (I assume pathos), the
+    state destructor was called multiple times (I assume once per
+    thread), which resulted in ugly output.  This is fixed now.
+
 # 1.0.3
 
   * **bugfix:** Switching back to pathos as multiprocessing can't

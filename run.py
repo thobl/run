@@ -318,6 +318,7 @@ def run():
                 pass
         except KeyboardInterrupt:
             _print_warning("aborted during experiment " + name)
+    _state.run_completed = True
     _state = _State()
 
 
@@ -570,9 +571,13 @@ class _State:
         self.time_start = time.time()
         self.time_start_run = time.time()
         self.run_was_called = False
+        self.run_completed = False
 
     def __del__(self):
         if self.runs_by_name == {}:
+            return
+
+        if not self.run_completed:
             return
 
         if not self.run_was_called:
