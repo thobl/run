@@ -580,6 +580,16 @@ made sure that the header is written only once.  If you abort an
 experiment by interrupting it with ``ctrl + c`` there might be a
 leftover ``*.lock`` file, which you have to remove manually.
 
+## Return String
+
+The method ``run.add()`` can return a list of strings, one for each
+run.  This can, e.g., be helpful if each run of the experiment
+generates a file and you want to perform an additional task on each of
+these files in a later experiment.
+
+To use this feature, set the parameter ``return_string`` of
+``run.add()``.  It is a blob.
+
 ## Dry Run
 
 If you execute your experiment script with ``dry_run`` as parameter,

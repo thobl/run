@@ -6,22 +6,13 @@
     </h1>
 {% enddefaultmacro %}
 
-{% block style_content %}
-  {{ super() }}
-  .pdoc .attribution {
-  transform: scale(0.75);
-  }
-}
-{% endblock %}
-
-
 {% block nav %}
   <nav class="pdoc">
-    <label id="navtoggle" for="togglestate" class="pdoc-button">{% include 'navtoggle.svg' %}</label>
+    <label id="navtoggle" for="togglestate" class="pdoc-button">{% include 'resources/navtoggle.svg' %}</label>
     <input id="togglestate" type="checkbox">
     <div style="height: 80%">
 
-      {% set index = module.docstring | render_docstring | attr("toc_html") %}
+      {% set index = module.docstring | to_markdown | to_html | attr("toc_html") %}
       {% if index %}
         <h3>Contents</h3>
         {{ index | safe }}
@@ -29,7 +20,7 @@
 
       {% if module.members %}
 	<a class="pdoc-button module-list-button" href="./index.html">
-          {% include "box-arrow-in-left.svg" %}
+          {% include "resources/box-arrow-in-left.svg" %}
           &nbsp;
           Readme
         </a>
@@ -41,7 +32,7 @@
 	<a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev">
           built with <span class="visually-hidden">pdoc</span><img
           alt="pdoc logo"
-          src="data:image/svg+xml,{% filter urlencode %}{% include "logo.svg" %}{% endfilter %}"/>
+          src="data:image/svg+xml,{% filter urlencode %}{% include "resources/pdoc-logo.svg" %}{% endfilter %}"/>
 	</a>
       {% endblock %}
     </div>

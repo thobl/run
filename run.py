@@ -61,6 +61,7 @@ def add(
     header_string=None,
     header_command=None,
     header_mod=_identity,
+    return_string=None,
     allowed_return_codes=[0],
     combinations_filter=lambda args: True,
 ):
@@ -161,6 +162,11 @@ def add(
       file.  It should take one argument (a string) and return a
       string.
 
+    return_string: blob, optional
+
+      If given, this blob will be evaluated for each run and a list of
+      the results is returned.
+
     allowed_return_codes: list[int], default =``[0]``
 
       A list of allowed return codes.  If a command returns any other
@@ -174,6 +180,11 @@ def add(
       represents a valid combination by returning ``True`` of
       ``False``.  The default returns always ``True``, i.e., a run is
       created for every combination.
+
+    Returns
+    -------
+    None or list[string]
+        See documentation of ``return_string``.
 
     """
     if stdout_mod != _identity and stdout_file is None:
@@ -205,6 +216,7 @@ def add(
         for vals in itertools.product(*arguments_descr.values())
     ]
 
+    return_strings = []
     for args in arguments_set:
         if not combinations_filter(args):
             continue
@@ -230,6 +242,11 @@ def add(
             is_selected=_is_selected(real_name),
         )
         _add_run(run)
+        if return_string is not None:
+            return_strings.append(deblob(return_string, args))
+
+    if return_string is not None:
+        return return_strings
 
 
 def _add_run(run):

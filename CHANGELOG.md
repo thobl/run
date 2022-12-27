@@ -1,3 +1,10 @@
+# 1.0.5
+  * **new feature:** The add command can now return a list of strings,
+    one string for each run.  To get a return value, specify the
+    parameter return_string.
+  * **documentation:** Description of the new feature.
+  * **documentation:** Updated pdoc version.
+
 # 1.0.4
   * **bugfix:** After updating some library (I assume pathos), the
     state destructor was called multiple times (I assume once per
