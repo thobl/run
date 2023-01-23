@@ -14,6 +14,7 @@ import os
 import subprocess
 import signal
 import time
+from fnmatch import fnmatchcase
 from collections import namedtuple
 from inspect import signature
 from filelock import SoftFileLock
@@ -270,6 +271,17 @@ def _add_run(run):
         _state.runs_by_name[run.name].append(run)
 
 
+def _wildcard_match(pattern: str, candidates: 'list[str]'):
+    """Decides whether some element a pattern with Unix shell-style wildcards
+    matches any candidate string.
+
+    """
+    for candidate in candidates:
+        if fnmatchcase(pattern, candidate):
+            return True
+    return False
+
+
 def _is_selected(name):
     """Decides whether a given name was selected.
 
@@ -278,10 +290,10 @@ def _is_selected(name):
     parameter.
 
     """
-    if name in sys.argv:
+    if _wildcard_match(name, sys.argv):
         return True
     for group, names in _state.groups.items():
-        if group in sys.argv and name in names:
+        if _wildcard_match(group, sys.argv) and _wildcard_match(name, names):
             return True
     return False
 
