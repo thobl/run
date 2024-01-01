@@ -359,13 +359,12 @@ def run():
 
     _print_section("\nrunning the experiments:")
 
-    for name, runs in _state.runs_by_name.items():
-        if len(runs) == 0:
-            continue
-        # run in parallel
-        orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-        with ProcessingPool(nodes=_cores) as pool:
-            print("pool 2")
+    with ProcessingPool(nodes=_cores) as pool:
+        for name, runs in _state.runs_by_name.items():
+            if len(runs) == 0:
+                continue
+            # run in parallel
+            orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
             signal.signal(signal.SIGINT, orig_sigint_handler)
             try:
                 for _ in tqdm.tqdm(
@@ -376,8 +375,7 @@ def run():
                     pass
             except KeyboardInterrupt:
                 _print_warning("aborted during experiment " + name)
-            finally:
-                pool.close()
+        pool.close()
     _state.run_completed = True
     _state = _State()
 
