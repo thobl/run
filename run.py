@@ -364,17 +364,20 @@ def run():
             continue
         # run in parallel
         orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-        pool = ProcessingPool(nodes=_cores)
-        signal.signal(signal.SIGINT, orig_sigint_handler)
-        try:
-            for _ in tqdm.tqdm(
-                pool.uimap(_run_run, runs),
-                desc=name.ljust(_max_name_len()),
-                total=len(runs),
-            ):
-                pass
-        except KeyboardInterrupt:
-            _print_warning("aborted during experiment " + name)
+        with ProcessingPool(nodes=_cores) as pool:
+            print("pool 2")
+            signal.signal(signal.SIGINT, orig_sigint_handler)
+            try:
+                for _ in tqdm.tqdm(
+                    pool.uimap(_run_run, runs),
+                    desc=name.ljust(_max_name_len()),
+                    total=len(runs),
+                ):
+                    pass
+            except KeyboardInterrupt:
+                _print_warning("aborted during experiment " + name)
+            finally:
+                pool.close()
     _state.run_completed = True
     _state = _State()
 
