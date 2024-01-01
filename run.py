@@ -275,6 +275,22 @@ def _wildcard_match(pattern: str, candidates: 'list[str]'):
     """Decides whether some element a pattern with Unix shell-style wildcards
     matches any candidate string.
 
+    Parameters
+    ----------
+
+    pattern: str
+
+        The pattern to match.
+
+    candidates: list[str]
+
+        The list of strings to match against.
+
+    Returns
+    -------
+    bool
+        True if any of the candidates matches the pattern, False otherwise.
+
     """
     for candidate in candidates:
         if fnmatchcase(pattern, candidate):
@@ -283,11 +299,23 @@ def _wildcard_match(pattern: str, candidates: 'list[str]'):
 
 
 def _is_selected(name):
-    """Decides whether a given name was selected.
+    """Decide whether a given name was selected.
 
     A name counts as selected if it is give as command line parameter
     or if it belongs to a group that was given as command line
     parameter.
+
+    Parameters
+    ----------
+
+    name: string
+
+        The name of the experiment.
+
+    Returns
+    -------
+    bool
+        True if the experiment should be run, False otherwise.
 
     """
     if _wildcard_match(name, sys.argv):
