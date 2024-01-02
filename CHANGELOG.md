@@ -1,3 +1,10 @@
+# 1.0.6
+  * **new feature:** it is now possible to use wildcards to specify
+    the names of experiments to be run
+  * bug-fix: under some circumstances the multi-processing pool
+    was getting an exception when python is shutting down
+  * **documentation:** Description of the new feature.
+
 # 1.0.5
   * **new feature:** The add command can now return a list of strings,
     one string for each run.  To get a return value, specify the

@@ -14,6 +14,7 @@ import os
 import subprocess
 import signal
 import time
+from fnmatch import fnmatchcase
 from collections import namedtuple
 from inspect import signature
 from filelock import SoftFileLock
@@ -270,18 +271,57 @@ def _add_run(run):
         _state.runs_by_name[run.name].append(run)
 
 
+def _wildcard_match(pattern: str, candidates: 'list[str]'):
+    """Decides whether some element a pattern with Unix shell-style wildcards
+    matches any candidate string.
+
+    Parameters
+    ----------
+
+    pattern: str
+
+        The pattern to match.
+
+    candidates: list[str]
+
+        The list of strings to match against.
+
+    Returns
+    -------
+    bool
+        True if any of the candidates matches the pattern, False otherwise.
+
+    """
+    for candidate in candidates:
+        if fnmatchcase(pattern, candidate):
+            return True
+    return False
+
+
 def _is_selected(name):
-    """Decides whether a given name was selected.
+    """Decide whether a given name was selected.
 
     A name counts as selected if it is give as command line parameter
     or if it belongs to a group that was given as command line
     parameter.
 
+    Parameters
+    ----------
+
+    name: string
+
+        The name of the experiment.
+
+    Returns
+    -------
+    bool
+        True if the experiment should be run, False otherwise.
+
     """
-    if name in sys.argv:
+    if _wildcard_match(name, sys.argv):
         return True
     for group, names in _state.groups.items():
-        if group in sys.argv and name in names:
+        if _wildcard_match(group, sys.argv) and _wildcard_match(name, names):
             return True
     return False
 
@@ -319,22 +359,23 @@ def run():
 
     _print_section("\nrunning the experiments:")
 
-    for name, runs in _state.runs_by_name.items():
-        if len(runs) == 0:
-            continue
-        # run in parallel
-        orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-        pool = ProcessingPool(nodes=_cores)
-        signal.signal(signal.SIGINT, orig_sigint_handler)
-        try:
-            for _ in tqdm.tqdm(
-                pool.uimap(_run_run, runs),
-                desc=name.ljust(_max_name_len()),
-                total=len(runs),
-            ):
-                pass
-        except KeyboardInterrupt:
-            _print_warning("aborted during experiment " + name)
+    with ProcessingPool(nodes=_cores) as pool:
+        for name, runs in _state.runs_by_name.items():
+            if len(runs) == 0:
+                continue
+            # run in parallel
+            orig_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
+            signal.signal(signal.SIGINT, orig_sigint_handler)
+            try:
+                for _ in tqdm.tqdm(
+                    pool.uimap(_run_run, runs),
+                    desc=name.ljust(_max_name_len()),
+                    total=len(runs),
+                ):
+                    pass
+            except KeyboardInterrupt:
+                _print_warning("aborted during experiment " + name)
+        pool.close()
     _state.run_completed = True
     _state = _State()
 
