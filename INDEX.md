@@ -567,7 +567,7 @@ sum_of_squares calculations`` yields the following output.
 ## Wildcard matching for experiment names
 
 When specifying the names of experiments to be run, it is also possible to use
-shell wildcards (* and ?).  Note that it in most shells the names need to be put
+shell wildcards (* and ?).  Note that in most shells the names need to be put
 into quotes in order to not be evaluated before being passed to python.
 
 ![Example Wildcard-Run 1](example_run_wildcards.png)
