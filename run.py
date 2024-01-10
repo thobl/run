@@ -271,7 +271,7 @@ def _add_run(run):
         _state.runs_by_name[run.name].append(run)
 
 
-def _wildcard_match(pattern: str, candidates: 'list[str]'):
+def _wildcard_match(pattern: str, candidates: "list[str]"):
     """Decides whether some element a pattern with Unix shell-style wildcards
     matches any candidate string.
 
@@ -376,8 +376,18 @@ def run():
             except KeyboardInterrupt:
                 _print_warning("aborted during experiment " + name)
         pool.close()
+
+    # If no runs were selected, we print a brief reminder message that names of
+    # runs should be passed via the command line to execute them.
+    any_selected = any(map(_is_selected, _state.runs_by_name.keys()))
+
     _state.run_completed = True
     _state = _State()
+
+    if not any_selected:
+        _print_warning(
+            f"Did not try to run experiments as none were passed via the command line."
+        )
 
 
 def use_cores(nr_cores):

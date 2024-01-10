@@ -54,6 +54,8 @@ run.add(
 run.run()
 ```
 
+The experiment is then run using `python example.py experiment1`.
+
 If you want to reformat the output before writing it to a file using a
 function `reformat()`, which takes a string and returns a string, you
 can do so by simply adding `stdout_mod=reformat` to the above example.

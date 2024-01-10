@@ -1,7 +1,13 @@
+# 1.0.7
+  * **user experience:** If no run is selected via the command line, a warning
+    is presented to the user as a reminder.
+  * **documentation:** The README now briefly explains how to execute from the
+    command line
+
 # 1.0.6
   * **new feature:** it is now possible to use wildcards to specify
     the names of experiments to be run
-  * bug-fix: under some circumstances the multi-processing pool
+  * **bug-fix:** under some circumstances the multi-processing pool
     was getting an exception when python is shutting down
   * **documentation:** Description of the new feature.
 
