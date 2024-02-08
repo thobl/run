@@ -375,7 +375,7 @@ def run():
                     pass
             except KeyboardInterrupt:
                 _print_warning("aborted during experiment " + name)
-        pool.close()
+        # pool.close()  # TODO: figure out why this causes problems when calling run.run() twic
 
     # If no runs were selected, we print a brief reminder message that names of
     # runs should be passed via the command line to execute them.
