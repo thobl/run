@@ -64,10 +64,16 @@ For more ways to reformat the output and for other features, see the
 
 ## Installation
 
-To install the run module, call `pip install .` from the root
-directory of this repository.  Alternatively, you can copy the
-`run.py` or the whole repository (e.g., as a git submodule) to
-wherever you use it.
+The run module is available on under the name
+[run-experiments](https://pypi.org/project/run-experiments/).  To
+install it, run:
+
+```
+pip install run-experiments
+```
+
+Alternatively, you can copy the `run.py` or the whole repository
+(e.g., as a git submodule) to wherever you use it.
 
 ## Documentation
 

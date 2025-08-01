@@ -1,3 +1,4 @@
 output/
 __pycache__
-run.egg-info
+run_experiments.egg-info
+dist/
