@@ -103,3 +103,17 @@ pitfalls.
     1 -y 2`, you need to write `run.add(..., '"code/release/algo" -x 1 -y
     2', ...)`.  Without the surrounding `""`, Windows will call
     `code`, which opens VS Code instead of running your algorithm.
+
+
+## Building and Publishing on PyPi
+
+Building uses `setuptools` as backend (which makes the option
+`py-modules = ["run"]` available). Checklist for publishing new
+version:
+
+  * bump the version in `project.toml`
+  * update `CHANGELOG.md`
+  * run `hatch build` to build
+  * (optional: run `hatch publish --repo test dist/*<version>*` to
+    publish on test server)
+  * run `hatch publish dist/*<version>*` to publish

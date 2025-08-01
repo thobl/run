@@ -1,3 +1,6 @@
+# 1.0.8
+  * **distribution:** Version bump for cleaning up build.
+
 # 1.0.7
   * **user experience:** If no run is selected via the command line, a warning
     is presented to the user as a reminder.

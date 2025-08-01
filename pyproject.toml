@@ -1,3 +1,22 @@
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "run-experiments"
+version = "1.0.8"
+authors = [
+  { name="Thomas Bläsius", email="thomas.blaesius@kit.edu" },
+]
+description = "python module for running experiments"
+readme = "README.md"
+license = "ISC"
+license-files = ["LICENSE"]
+dependencies = ["filelock", "tqdm", "pathos"]
+
+[project.urls]
+Homepage = "https://github.com/thobl/run"
+Documentation = "https://thobl.github.io/run/"
+
+[tool.setuptools]
+py-modules = ["run"]
